@@ -1,1 +1,186 @@
-﻿<h1>Welcome Home</h1>
+﻿@* <h1>When you need to go, you need to know.</h1> *@
+<div class="">
+
+    <!-- Hero -->
+    <div class="relative w-full h-[60vh] flex items-center justify-center overflow-hidden bg-gray-50 pt-32 car-Background ">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
+
+        <div class="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl z-10">
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight text-white drop-shadow-lg">
+                TrustRide
+            </h1>
+
+            <p class="px-8 mt-8 mb-12 text-lg text-gray-100 drop-shadow-md">
+                Find used and reliable cars near you!
+            </p>
+            <div class="flex flex-wrap justify-center">
+                <button id="scrollBtn" class="px-8 py-3 m-2 text-lg font-semibold rounded bg-[var(--electric)] text-[var(--dark)] hover:cursor-pointer hover:shadow-[0_10px_20px_-10px_black] hover:scale-105 transition-transform">
+                    Find My Next Car!
+                </button>
+
+                <a asp-action="RateRestroom" class="px-8 py-3 m-2 text-lg border rounded text-white border-white hover:bg-white hover:text-black hover:cursor-pointer transition-colors">
+                    About our Service
+                </a>
+
+
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+
+    </div>
+
+
+    <!-- Feature Strip -->
+    <section class="w-full bg-white py-16 px-8">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+            <div>
+                <h3 class="text-2xl font-bold mb-2">Fast</h3>
+                <p class="text-gray-600">Find hundreds of used cars at the click of a button.</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-2">Accurate</h3>
+                <p class="text-gray-600">Find cars in your search range.</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-2">Budget Friendly</h3>
+                <p class="text-gray-600">Enter your budget and we will find cars that fit in that budget</p>
+            </div>
+        </div>
+    </section>
+
+    @* ai section *@
+    <section class="relative flex w-screen line-bg py-16 px-8 justify-center min-h-screen">
+
+        <!-- Top fade (into previous section) -->
+        <div class="absolute top-0 left-0 w-full h-32
+                bg-gradient-to-t from-transparent to-white
+                pointer-events-none"></div>
+
+        <!-- Bottom fade (into next section) -->
+        <div class="absolute bottom-0 left-0 w-full h-32
+                bg-gradient-to-b from-transparent to-white
+                pointer-events-none"></div>
+
+        <div class="max-w-8xl mx-auto gap-10 text-center transition">
+            <div>
+                <h3 class="text-2xl font-bold mb-2 text-white">AI Integration</h3>
+                <p class="text-gray-200">Ask our ai for help finding the car that fits your exact needs (Coming Soon)</p>
+
+                <div id="askAiButton"
+                     class="outer-cont flex items-center gap-2 cursor-pointer duration-500 transform">
+
+                    <!-- SVG unchanged -->
+                    <svg viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <g fill="none">
+                            <path d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z"></path>
+                            <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216zM11 6.094l-.806 2.36a6 6 0 0 1-3.49 3.649l-.25.091l-2.36.806l2.36.806a6 6 0 0 1 3.649 3.49l.091.25l.806 2.36l.806-2.36a6 6 0 0 1 3.49-3.649l.25-.09l2.36-.807l-2.36-.806a6 6 0 0 1-3.649-3.49l-.09-.25zM19 2a1 1 0 0 1 .898.56l.048.117l.35 1.026l1.027.35a1 1 0 0 1 .118 1.845l-.118.048l-1.026.35l-.35 1.027a1 1 0 0 1-1.845.117l-.048-.117l-.35-1.026l-1.027-.35a1 1 0 0 1-.118-1.845l.118-.048l1.026-.35l.35-1.027A1 1 0 0 1 19 2"
+                                  fill="currentColor"></path>
+                        </g>
+                    </svg>
+                    Ask Our AI for Help
+                </div>
+            </div>
+        </div>
+
+        <div id="aiChatbox"
+             class="hidden opacity-0 translate-y-4 transition-all duration-500 w-[60%] mx-auto mt-10">
+            <div class="card">
+                <div class="chat-header">Chat</div>
+                <div class="chat-window">
+                    <ul class="message-list"></ul>
+                </div>
+                <div class="chat-input">
+                    <input type="text" class="message-input" placeholder="Type your message here">
+                    <button class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+    @* Search Section *@
+    <section id="bottomSection" class="py-20 bg-gray-50">
+        <div class="container mx-auto grid gap-10 lg:grid-cols-2 xl:grid-cols-5">
+
+            <!-- Left Card -->
+            <div class="xl:col-span-2 bg-white shadow-xl rounded-2xl px-10 py-14">
+                <h1 class="text-4xl font-extrabold text-gray-900">
+                    Find Your Car!
+                </h1>
+
+                <p class="mt-6 text-gray-600 leading-relaxed">
+                    <span class="font-semibold text-gray-900">You want the best!</span>
+                    We want that for you as well. No more guessing whether that car is right for you.
+                    Let us help you find the perfect used and reliable car within your budget.
+                </p>
+
+                <form class="mt-10 space-y-5">
+
+                    <!-- Budget -->
+                    <div>
+                        <label for="Budget" class="sr-only">Max Budget</label>
+                        <input id="Budget" type="text" placeholder="Your Budget in $"
+                               class="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3
+                                  focus:outline-none focus:ring-2 focus:ring-violet-500">
+                    </div>
+
+                    <!-- Distance -->
+                    <div>
+                        <label for="Distance" class="sr-only">Distance</label>
+                        <select id="Distance"
+                                class="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3
+                                   focus:outline-none focus:ring-2 focus:ring-violet-500">
+                            <option value="10000">Distance in miles</option>
+                            <option value="25">25 miles</option>
+                            <option value="50">50 miles</option>
+                            <option value="100">100 miles</option>
+                            <option value="250">250 miles</option>
+                            <option value="10000">Any</option>
+                        </select>
+                    </div>
+
+                    <!-- Button -->
+                    <button type="button"
+                            class="w-full py-3 rounded-lg bg-[var(--electric)] text-white font-semibold
+                               hover:bg-violet-700 transition shadow-md">
+                        Search Nearby
+                    </button>
+
+                </form>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="xl:col-span-3 bg-white shadow-xl rounded-2xl p-10 text-gray-700">
+                <h2 class="text-2xl font-bold mb-4">Results</h2>
+                <p class="text-gray-500">Your search results will appear here...</p>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+@* Chatbox open script *@
+<script>
+    const btn = document.getElementById("askAiButton");
+    const box = document.getElementById("aiChatbox");
+
+    btn.addEventListener("click", () => {
+
+        // Reveal chatbox
+        box.classList.remove("hidden");
+
+        requestAnimationFrame(() => {
+            box.classList.remove("opacity-0", "translate-y-4");
+            box.classList.add("opacity-100", "translate-y-0");
+        });
+    });
+
+    document.getElementById("scrollBtn").addEventListener("click", () => {
+        document.getElementById("bottomSection").scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+</script>
