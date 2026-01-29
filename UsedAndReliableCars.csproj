@@ -4,11 +4,19 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <RootNamespce>UsedAndReliableCars</RootNamespce>
   </PropertyGroup>
+	<ItemGroup>
+		<UpToDateCheckBuilt Include="wwwroot/css/site.css" Set="Css" />
+		<Folder Include="Controllers\" />
+		<Folder Include="Views\Shared\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="wwwroot\css\" />
-  </ItemGroup>
+
+	<Target Name="Tailwind" BeforeTargets="Build;PrepareForPublish;BeforeRebuild">
+		<Exec Command="npm install" />
+		<Exec Command="npx tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/output.css --minify" />
+	</Target>
 
 </Project>
+

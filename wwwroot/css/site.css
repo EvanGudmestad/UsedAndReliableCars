@@ -1,0 +1,19 @@
+﻿@import "tailwindcss";
+
+@layer utilities {
+    .caret {
+        color: #ff0000;
+        animation: blink 1s step-end infinite;
+        user-select: none;
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1; /* Visible */
+    }
+
+    50% {
+        opacity: 0; /* Invisible */
+    }
+}
