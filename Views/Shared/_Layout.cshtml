@@ -4,10 +4,26 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <div class="App grid grid-cols-3 grid-rows-4 gap-4">
+        <div class="col-span-3 col-start-1">
+            <nav class="flex justify-center items-center gap-10 p-4 bg-gray-100">
+                <ul class="flex gap-6">
+                    <li class="cursor-pointer px-2 hover:text-green-600 transition-all duration-150">Home</li>
+                    <li class="cursor-pointer px-2 hover:text-green-600 transition-all duration-150">About Us</li>
+                    <li class="cursor-pointer px-2 hover:text-green-600 transition-all duration-150">Services</li>
+                    <li class="cursor-pointer px-2 hover:text-green-600 transition-all duration-150">Contact</li>
+                </ul>
+                <a href="#" class="ml-auto font-bold text-xl">Logo</a>
+            </nav>
+        </div>
+        <div class="col-span-3 row-span-3 col-start-1 row-start-2">2</div>
+        <div class="row-span-3 col-start-3 row-start-2">
+            @RenderBody()
+        </div>
+        <div class="col-span-4 col-start-1 row-start-4">4</div>
     </div>
 </body>
 </html>
