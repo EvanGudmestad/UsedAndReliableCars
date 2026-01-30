@@ -5,29 +5,114 @@
 <div class="">
 
     <!-- Hero -->
-    <div class="relative w-full h-[60vh] flex items-center justify-center overflow-hidden bg-gray-50 pt-32 car-Background ">
+    <div class="relative w-full  flex items-center justify-center overflow-hidden bg-gray-50 pt-32 bg-gray-200 car-Background ">
         <div class="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
 
-        <div class="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl z-10">
-            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight text-white drop-shadow-lg">
-                TrustRide
-            </h1>
 
-            <p class="px-8 mt-8 mb-12 text-lg text-gray-100 drop-shadow-md">
-                Find used and reliable cars near you!
-            </p>
-            <div class="flex flex-wrap justify-center">
-                <button id="scrollBtn" class="px-8 py-3 m-2 text-lg font-semibold rounded bg-[var(--electric)] text-[var(--dark)] hover:cursor-pointer hover:shadow-[0_10px_20px_-10px_black] hover:scale-105 transition-transform">
-                    Find My Next Car!
-                </button>
+        <div class="container mx-auto grid lg:grid-cols-2 gap-12 items-center px-4 py-16 md:py-32 md:px-10 lg:px-32 xl:max-w-6xl z-10">
 
-                <a href="#" class="px-8 py-3 m-2 text-lg border rounded text-white border-white hover:bg-white hover:text-black hover:cursor-pointer transition-colors">
-                    About our Service
-                </a>
+            
+            <!-- LEFT SIDE (Form) -->
+            <div id="bottomSection" class="order-2 lg:order-1 bg-white shadow-xl rounded-2xl px-10 py-14">
+                <h1 class="text-4xl font-extrabold text-gray-900">
+                    Find Your Car!
+                </h1>
 
+                <p class="mt-6 text-gray-600 leading-relaxed">
+                    <span class="font-semibold text-gray-900">You want the best!</span>
+                    We want that for you as well. No more guessing whether that car is right for you.
+                    Let us help you find the perfect used and reliable car within your budget.
+                    Listed below are the most reliable used cars according to Consumer Report and Dave Ramsey.
+                </p>
+                <div class="flex">
+                    <a href="https://www.consumerreports.org/cars/best-used-cars-10-top-picks-a8027733372/#used-car-top-picks-under-10000" target="_blank">
+                        <img src="~/images/ConsumerReportLogo.png"  alt="Consumer Reports Logo" class="h-12 mt-4 cursor-pointer" />
+                    </a>
+                    <a href="https://www.ramseysolutions.com/insurance/new-car-vs-used-car" target="_blank">
+                        <img src="~/images/RamseyLogo.jpg" alt="Dave Ramsey Logo" class="h-12 mt-4 cursor-pointer" />
+                    </a>
+                </div>
 
+                <form class="mt-10 space-y-5">
+                    @{
+                        var grouped = Model.UsedCars
+                        .GroupBy(c => c.PriceCategory)
+                        .OrderBy(g => g.Key);
+                    }
+
+                    @foreach (var group in grouped)
+                    {
+                        var id = $"group_{group.Key}";
+                        <div class="mb-6 border rounded-lg overflow-hidden">
+
+                            <!-- Accordion Header -->
+                            <button type="button"
+                                    class="w-full flex justify-between items-center px-4 py-3 bg-gray-100 hover:bg-gray-200 transition"
+                                    onclick="toggleAccordion('@id')">
+
+                                <span class="text-lg font-semibold text-gray-800">
+                                    Under $@group.Key.ToString("N0")
+                                </span>
+
+                                <svg class="w-5 h-5 text-gray-600 transition-transform"
+                                     fill="none" stroke="currentColor" stroke-width="2"
+                                     viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+
+                            <!-- Accordion Content -->
+                            <div id="@id" class="max-h-0 overflow-hidden transition-all duration-300 bg-white">
+                                <div class="p-4 space-y-3">
+                                    @foreach (var car in group)
+                                    {
+                                        <label class="flex items-center gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50">
+                                            <input type="checkbox"
+                                                   value="@car.Model"
+                                                   class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
+
+                                            <span class="text-sm font-medium text-gray-900">
+                                                @car.Make @car.Model (@car.Year)
+                                            </span>
+                                        </label>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </form>
             </div>
+            <!-- RIGHT SIDE (Heading + Buttons) -->
+            <div class="order-1 lg:order-2 text-center lg:text-left">
+                <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight text-white drop-shadow-lg">
+                    TrustRide
+                </h1>
+
+                <p class="mt-8 mb-12 text-lg text-gray-100 drop-shadow-md">
+                    Find used and reliable cars near you!
+                </p>
+
+                <div class="flex flex-wrap lg:justify-start justify-center gap-4">
+                    <button id="scrollBtn"
+                            class="px-8 py-3 text-lg font-semibold rounded bg-[var(--electric)] text-[var(--dark)]
+                       hover:shadow-[0_10px_20px_-10px_black] hover:scale-105 transition-transform">
+                        Find My Next Car!
+                    </button>
+
+                    <a href="#"
+                       class="px-8 py-3 text-lg border rounded text-white border-white
+                      hover:bg-white hover:text-black transition-colors">
+                        About our Service
+                    </a>
+                </div>
+            </div>
+
+
         </div>
+
+
         <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
 
     </div>
@@ -62,7 +147,7 @@
         <!-- Bottom fade (into next section) -->
         <div class="absolute bottom-0 left-0 w-full h-32
                 bg-gradient-to-b from-transparent to-white
-                pointer-events-none"></div>
+                pointer-events-none"></div> 
 
         <div class="max-w-8xl mx-auto gap-10 text-center transition">
             <div>
@@ -103,7 +188,7 @@
 
     </section>
 
-    @* Search Section *@
+    @* Search Section
     <section id="bottomSection" class="py-20 bg-gray-50">
         <div class="container mx-auto grid gap-10 lg:grid-cols-2 xl:grid-cols-5">
 
@@ -121,15 +206,38 @@
                 </p>
 
                 <form class="mt-10 space-y-5">
-                @foreach(var car in Model.UsedCars)
+                    @{
+                        var grouped = Model.UsedCars
+                        .GroupBy(c => c.PriceCategory)
+                        .OrderBy(g => g.Key); // sorts by price category
+                    }
+
+                    @foreach (var group in grouped)
                     {
-                        <div class="flex items-center mb-4">
-                            <label class="text-sm font-medium text-gray-900 ml-2 block cursor-pointer">
-                                <input type="checkbox" value="@car.Model" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"/> 
-                                <span>@car.Make @car.Model (@car.Year) - @car.PriceCategory</span>
-                            </label>
+                        <div class="mb-10">
+                            <!-- Price Category Header -->
+                            <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">
+                                Under $@group.Key.ToString("N0")
+                            </h2>
+
+                            <!-- Cars in this price category -->
+                            <div class="space-y-3">
+                                @foreach (var car in group)
+                                {
+                                    <label class="flex items-center gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50">
+                                        <input type="checkbox"
+                                               value="@car.Model"
+                                               class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" />
+
+                                        <span class="text-sm font-medium text-gray-900">
+                                            @car.Make @car.Model (@car.Year)
+                                        </span>
+                                    </label>
+                                }
+                            </div>
                         </div>
                     }
+
                     <!-- Button -->
                     <button type="button"
                             class="w-full py-3 rounded-lg bg-[var(--electric)] text-white font-semibold
@@ -172,4 +280,17 @@
             behavior: "smooth"
         });
     });
+
+    function toggleAccordion(id) {
+        const content = document.getElementById(id);
+        const icon = document.getElementById(id + "_icon");
+
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            icon.style.transform = "rotate(0deg)";
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.style.transform = "rotate(180deg)";
+        }
+    }
 </script>
