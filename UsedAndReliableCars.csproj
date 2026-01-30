@@ -6,9 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="wwwroot\css\" />
-  </ItemGroup>
+	<Target Name="Tailwind" BeforeTargets="Build;PrepareForPublish">
+		<Exec Command="npm install" />
+		<Exec Command="npx @tailwindcss/cli -i ./wwwroot/css/site.css -o ./wwwroot/css/output.css --minify" />
+		<ItemGroup>
+			<Content Include="wwwroot/css/output.css" CopyToPublishDirectory="Always" />
+		</ItemGroup>
+	</Target>
+
 
 </Project>

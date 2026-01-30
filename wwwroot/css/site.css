@@ -1,0 +1,420 @@
+﻿@import "tailwindcss";
+
+:root {
+    --charcoal: #1F2933;
+    --dark: #4A4A4A;
+    --electric: #0AC4FF;
+    --purewhite: #FFFFFF;
+}
+
+.car-Background {
+    background-image: url("/images/CarBackground.jpg"); /* Use an absolute path from wwwroot */
+    background-repeat: no-repeat;
+    background-size: cover; /* Optional: ensures the image covers the entire area */
+    background-position: center; /* Optional: centers the image */
+    /* Add a background-color as a fallback */
+    background-color: #cccccc;
+}
+.fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animated-bg {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+.text-stroke {
+    -webkit-text-stroke: 2px white;
+    color: transparent;
+}
+
+.parallax-text {
+    transform: translateZ(-10px) scale(2);
+}
+
+.glitch {
+    position: relative;
+}
+
+    .glitch::before,
+    .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .glitch::before {
+        left: 2px;
+        text-shadow: -2px 0 #ff00c1;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+        left: -2px;
+        text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+        animation: glitch-anim2 1s infinite linear alternate-reverse;
+    }
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(10px, 9999px, 31px, 0);
+    }
+
+    25% {
+        clip: rect(25px, 9999px, 98px, 0);
+    }
+
+    50% {
+        clip: rect(42px, 9999px, 73px, 0);
+    }
+
+    75% {
+        clip: rect(67px, 9999px, 62px, 0);
+    }
+
+    100% {
+        clip: rect(38px, 9999px, 19px, 0);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(65px, 9999px, 119px, 0);
+    }
+
+    25% {
+        clip: rect(79px, 9999px, 12px, 0);
+    }
+
+    50% {
+        clip: rect(7px, 9999px, 94px, 0);
+    }
+
+    75% {
+        clip: rect(53px, 9999px, 165px, 0);
+    }
+
+    100% {
+        clip: rect(28px, 9999px, 16px, 0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.1);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.heartbeat {
+    animation: heartbeat 1s infinite;
+}
+
+.btn-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+    .btn-shine::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient( to bottom right, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 100% );
+        transform: rotate(45deg);
+        animation: shine 3s infinite;
+    }
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+
+.story-script-regular {
+    font-family: "Story Script", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* From Uiverse.io by VijinV */
+.inputbox {
+    position: relative;
+    width: 196px;
+}
+
+    .inputbox input {
+        position: relative;
+        width: 100%;
+        padding: 20px 10px 10px;
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+        border: none;
+        color: #23242a;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+        z-index: 10;
+    }
+
+    .inputbox span {
+        position: absolute;
+        left: 0;
+        padding: 20px 10px 10px;
+        font-size: 1em;
+        color: #8f8f8f;
+        letter-spacing: 00.05em;
+        transition: 0.5s;
+        pointer-events: none;
+    }
+
+    .inputbox input:valid ~ span,
+    .inputbox input:focus ~ span {
+        color: #AD76FA;
+        transform: translateX(-10px) translateY(-34px);
+        font-size: 0,75em;
+    }
+
+    .inputbox i {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: #AD76FA;
+        border-radius: 4px;
+        transition: 0.5s;
+        pointer-events: none;
+        z-index: 9;
+    }
+
+    .inputbox input:valid ~ i,
+    .inputbox input:focus ~ i {
+        height: 44px;
+    }
+
+/* From Uiverse.io by biswacpcode */
+
+.hover-button::before {
+    margin-left: auto;
+}
+
+.hover-button::after, .hover-button::before {
+    content: '';
+    width: 0%;
+    height: 4px;
+    background: #0AC4FF;
+    display: block;
+    transition: 0.8s;
+}
+
+.hover-button:hover::after, .hover-button:hover::before {
+    width: 100%;
+}
+
+/* AI BUTTON AND BACKGROUND CSS */
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.outer-cont {
+    padding: 12px 20px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+    background: linear-gradient(90deg, #5bfcc4, #f593e4, #71a4f0);
+    border-radius: 12px;
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: inset 0px 0px 5px #ffffffa9, inset 0px 35px 30px #000, 0px 5px 10px #000000cc;
+    text-shadow: 1px 1px 1px #000;
+}
+
+    .outer-cont::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        border-radius: 12px;
+        filter: blur(0);
+        z-index: -1;
+        box-shadow: none;
+        background: conic-gradient( #00000000 80deg, #40baf7, #f34ad7, #5bfcc4, #00000000 280deg );
+        transition: all 0.3s ease;
+    }
+
+    .outer-cont:hover::before {
+        filter: blur(15px);
+    }
+
+    .outer-cont:active::before {
+        filter: blur(5px);
+        transform: translateY(1px);
+    }
+
+    .outer-cont:active {
+        box-shadow: inset 0px 0px 5px #ffffffa9, inset 0px 35px 30px #000;
+        margin-top: 3px;
+    }
+
+
+.line-bg {
+    width: 100%;
+    height: 100%;
+    --color: rgba(114, 114, 114, 0.3);
+    background-color: #191a1a;
+    background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent), linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+    background-size: 55px 55px;
+}
+
+/* From Uiverse.io by ahmed150up */
+/* Text Chat CSS */
+.card {
+    width: 60%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #e5d4ff; /* soft purple border */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+    background: linear-gradient(90deg, #0AC4FF, #28c9fc); /* PeePal purple gradient */
+    color: #ffffff;
+    padding: 14px 18px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Chat window */
+.chat-window {
+    height: 350px;
+    overflow-y: auto;
+    padding: 16px;
+    background-color: #faf7ff; /* ultra-light purple */
+}
+
+/* Message list */
+.message-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Input area */
+.chat-input {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-top: 1px solid #e5d4ff;
+    background-color: #ffffff;
+}
+
+/* Text input */
+.message-input {
+    flex: 1;
+    border: 1px solid #d6bbfc;
+    background-color: #faf7ff;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: border 0.2s ease;
+}
+
+    .message-input:focus {
+        border-color: #7c3aed;
+    }
+
+/* Send button */
+.send-button {
+    margin-left: 10px;
+    border: none;
+    background-color: #7c3aed;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .send-button:hover {
+        background-color: #ffffff;
+        color: #7c3aed;
+        border: 1px solid #7c3aed;
+        box-shadow: 0 4px 18px rgba(124, 58, 237, 0.25);
+    }
+

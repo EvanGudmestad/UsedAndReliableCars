@@ -4,10 +4,132 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Fugaz+One&family=Luckiest+Guy&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="fjalla-one-regular">
+    <nav data-text-bright data-bg="purple"
+         class="fixed w-[95vw] min-w-[380px] max-w-[1440px] shadow h-16 md:flex p-4 mx-0 mt-2 mb-12
+            top-0 left-1/2 -translate-x-1/2 rounded-full ring-white/50 ring-2 backdrop-blur-md
+            shadow-[0_10px_20px_-10px_black] group
+            bg-[#1f2933]/60
+            bg-[#1f2933]/40
+            text-white absolute z-50">
+
+        <div class="absolute top-1/2 -translate-y-1/2 right-8 cursor-pointer">Login</div>
+
+        <input type="checkbox" id="navbar__control"
+               class="md:hidden absolute w-8 h-8 top-4 left-4 z-10 opacity-0" />
+
+        <div class="flex w-fit m-0   rounded-full
+                absolute items-center left-1/2 top-1/2 transform -translate-1/2
+                md:left-0 md:mr-4 md:translate-x-0 md:left-4">
+
+
+            <a asp-action="Index">
+                <span class="ml-2 mr-4 text-[clamp(1.1rem,calc(2vw_+_0.1rem),2rem)] font-bold text-[var(--electric)] cursor-pointer">
+                    TrustRide
+                </span>
+            </a>
+        </div>
+
+        <div data-info="OPEN MENU ICON" class="md:hidden relative w-8 h-8 cursor-pointer group-has-checked:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+                <g fill="#fff" stroke-width="0.5" stroke="#fff">
+                    <path d="M8 6.983a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2zM7 12a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1m1 3.017a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2z" />
+                    <path fill-rule="evenodd" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10m-2 0a8 8 0 1 1-16 0a8 8 0 0 1 16 0" clip-rule="evenodd" />
+                </g>
+            </svg>
+        </div>
+
+        <div data-info="CLOSE MENU ICON" class="md:!hidden hidden relative w-8 h-8 cursor-pointer group-has-checked:block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-dasharray="12" stroke-dashoffset="12"
+                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 12l7 7M12 12l-7 -7M12 12l-7 7M12 12l7 -7">
+                    <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="12;0" />
+                </path>
+            </svg>
+        </div>
+
+        <ul data-info="MENU ITEMS"
+            class="w-fit my-0 p-0 md:flex items-center align-center rounded-[16px] md:bg-transparent
+               md:absolute md:top-1/2 md:left-1/2 md:-translate-1/2 transition-all
+               border-[2px_solid_#ffffff88] md:py-4 gap-x-4 lg:gap-x-8
+               bg-[var(--electric)]/70
+               **:transition-all
+               **:text-[clamp(1rem,calc(2vw_+_0.1rem),1.3rem)]
+               group-has-checked:px-16
+               group-has-checked:py-2
+               group-has-checked:-translate-x-2
+               group-has-checked:my-8
+               **:[line-height:4px]
+               **:has-[a]:px-0
+               **:has-[a]:py-0
+               **:has-[a]:grid
+               **:has-[a]:place-content-center
+               **:has-[a]:rounded-full
+               **:has-[a]:bg-transparent
+               **:has-[a]:group-has-checked:px-4
+               **:has-[a]:group-has-checked:py-2
+               **:has-[a]:group-has-checked:h-[2rem]">
+
+            <li>
+                <a asp-action="Index" onClick="closeMenu()"
+                   class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100 cursor-pointer">
+                    Home
+                </a>
+            </li>
+
+            <li class="my-0 h-0 group-has-checked:h-6 group-has-checked:my-4 md:mx-2 md:h-2 md:group-has-checked:my-0">
+                <a href="#" onClick="closeMenu()"
+                   class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100 cursor-pointer">
+                    About Us
+                </a>
+            </li>
+
+            <li class="my-0 h-0 group-has-checked:h-6 group-has-checked:my-4 md:mx-2 md:h-2 md:group-has-checked:my-0">
+                <a href="#" onClick="closeMenu()"
+                   class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100 cursor-pointer">
+                    Car Details
+                </a>
+            </li>
+
+            <li class="my-0 h-0 group-has-checked:h-6 group-has-checked:my-4 md:mx-2 md:h-2 md:group-has-checked:my-0">
+                <a href="#" onClick="closeMenu()"
+                   class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100 cursor-pointer">
+                    Contact
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <script>
+        function closeMenu() {
+          document.getElementById("navbar__control").checked = false;
+        }
+
+        function closeMobileMenuOnResizeWindow() {
+          window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) {
+              document.getElementById("navbar__control").checked = false;
+            }
+          })
+        }
+        closeMobileMenuOnResizeWindow();
+    </script>
     <div>
         @RenderBody()
     </div>
+    <footer>
+        <div class="w-full bg-slate-900 text-gray-300 py-6 mt-12">
+            <div class="max-w-6xl mx-auto text-center">
+                <p>&copy; @DateTime.Now.Year TrustRide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
