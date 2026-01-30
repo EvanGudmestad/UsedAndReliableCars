@@ -15,6 +15,11 @@
     /* Add a background-color as a fallback */
     background-color: #cccccc;
 }
+.fjalla-one-regular {
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
 
 
 @keyframes gradient {

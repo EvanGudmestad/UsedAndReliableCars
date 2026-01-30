@@ -1,4 +1,7 @@
-﻿@* <h1>When you need to go, you need to know.</h1> *@
+﻿@model UsedCar
+@{
+    ViewData["Title"] = "TrustRide - Find the cheapest and most reliable used cars near you!";
+}
 <div class="">
 
     <!-- Hero -->
@@ -113,34 +116,20 @@
                 <p class="mt-6 text-gray-600 leading-relaxed">
                     <span class="font-semibold text-gray-900">You want the best!</span>
                     We want that for you as well. No more guessing whether that car is right for you.
-                    Let us help you find the perfect used and reliable car within your budget.
+                    Let us help you find the perfect used and reliable car within your budget.  
+                    Listed below are the most reliable used cars according to Consumer Report 
                 </p>
 
                 <form class="mt-10 space-y-5">
-
-                    <!-- Budget -->
-                    <div>
-                        <label for="Budget" class="sr-only">Max Budget</label>
-                        <input id="Budget" type="text" placeholder="Your Budget in $"
-                               class="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3
-                                  focus:outline-none focus:ring-2 focus:ring-violet-500">
-                    </div>
-
-                    <!-- Distance -->
-                    <div>
-                        <label for="Distance" class="sr-only">Distance</label>
-                        <select id="Distance"
-                                class="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3
-                                   focus:outline-none focus:ring-2 focus:ring-violet-500">
-                            <option value="10000">Distance in miles</option>
-                            <option value="25">25 miles</option>
-                            <option value="50">50 miles</option>
-                            <option value="100">100 miles</option>
-                            <option value="250">250 miles</option>
-                            <option value="10000">Any</option>
-                        </select>
-                    </div>
-
+                @foreach(var car in Model.UsedCars)
+                    {
+                        <div class="flex items-center mb-4">
+                            <label class="text-sm font-medium text-gray-900 ml-2 block cursor-pointer">
+                                <input type="checkbox" value="@car.Model" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300"/> 
+                                <span>@car.Make @car.Model (@car.Year) - @car.PriceCategory</span>
+                            </label>
+                        </div>
+                    }
                     <!-- Button -->
                     <button type="button"
                             class="w-full py-3 rounded-lg bg-[var(--electric)] text-white font-semibold

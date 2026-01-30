@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Fugaz+One&family=Luckiest+Guy&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="fjalla-one-regular">
     <nav data-text-bright data-bg="purple"
          class="fixed w-[95vw] min-w-[380px] max-w-[1440px] shadow h-16 md:flex p-4 mx-0 mt-2 mb-12
             top-0 left-1/2 -translate-x-1/2 rounded-full ring-white/50 ring-2 backdrop-blur-md
@@ -56,7 +58,7 @@
             class="w-fit my-0 p-0 md:flex items-center align-center rounded-[16px] md:bg-transparent
                md:absolute md:top-1/2 md:left-1/2 md:-translate-1/2 transition-all
                border-[2px_solid_#ffffff88] md:py-4 gap-x-4 lg:gap-x-8
-               bg-[var(--electric)]/40
+               bg-[var(--electric)]/70
                **:transition-all
                **:text-[clamp(1rem,calc(2vw_+_0.1rem),1.3rem)]
                group-has-checked:px-16
@@ -84,12 +86,19 @@
             <li class="my-0 h-0 group-has-checked:h-6 group-has-checked:my-4 md:mx-2 md:h-2 md:group-has-checked:my-0">
                 <a href="#" onClick="closeMenu()"
                    class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100 cursor-pointer">
-                    About
+                    About Us
                 </a>
             </li>
 
             <li class="my-0 h-0 group-has-checked:h-6 group-has-checked:my-4 md:mx-2 md:h-2 md:group-has-checked:my-0">
-                <a asp-action="Contact" onClick="closeMenu()"
+                <a href="#" onClick="closeMenu()"
+                   class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100 cursor-pointer">
+                    Car Details
+                </a>
+            </li>
+
+            <li class="my-0 h-0 group-has-checked:h-6 group-has-checked:my-4 md:mx-2 md:h-2 md:group-has-checked:my-0">
+                <a href="#" onClick="closeMenu()"
                    class="h-0 opacity-0 md:opacity-100 group-has-checked:opacity-100 cursor-pointer">
                     Contact
                 </a>
@@ -115,5 +124,12 @@
     <div>
         @RenderBody()
     </div>
+    <footer>
+        <div class="w-full bg-slate-900 text-gray-300 py-6 mt-12">
+            <div class="max-w-6xl mx-auto text-center">
+                <p>&copy; @DateTime.Now.Year TrustRide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
