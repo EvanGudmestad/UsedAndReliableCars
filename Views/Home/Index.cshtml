@@ -1,6 +1,117 @@
-﻿<h3 class="">AI Used Car Finder</h3>
-<h1 class="text-5xl title">RideRight</h1>
-<h3 class="sub-title">Reliable Used Cars</h3>
-<p class="py-10 text-center">RideRight helps users find trustworthy used vehicles by analyzing Consumer Reports–approved models and public car listing data to identify the best deals.</p>
-<button class="px-4 py-9 bg-blue-900 rounded-2xl border-none text-lg text-grey-900 cursor-pointer">See Top Picks</button>
+﻿<section class="relative min-h-screen flex items-center pt-20 overflow-hidden hero-gradient">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 -right-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 -left-32 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Over 50,000+ vehicles available
+                </div>
+
+                <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                    Find Your <span class="gradient-text">Perfect Car</span> in Minutes
+                </h1>
+
+                <p class="text-lg text-muted-foreground max-w-lg">
+                    Discover the easiest way to find, compare, and purchase your dream vehicle.
+                    Trusted by over 2 million happy customers worldwide.
+                </p>
+
+                <!-- Search Box -->
+                <div class="glass-card p-4 md:p-6 space-y-4">
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <!-- Make & Model -->
+                        <div class="space-y-2">
+                            <label class="text-sm text-muted-foreground flex items-center gap-2">
+                                <!-- Car Icon SVG -->
+                                <div class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                Make & Model
+                            </label>
+                            <input type="text" placeholder="Any make or model"
+                                   class="w-full h-12 px-4 rounded-lg bg-secondary border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                        </div>
+
+                        <!-- Location -->
+                        <div class="space-y-2">
+                            <label class="text-sm text-muted-foreground flex items-center gap-2">
+                                <!-- MapPin Icon SVG -->
+                                <div class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                Location
+                            </label>
+                            <input type="text" placeholder="Enter ZIP code"
+                                   class="w-full h-12 px-4 rounded-lg bg-secondary border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                        </div>
+
+                        <!-- Year -->
+                        <div class="space-y-2">
+                            <label class="text-sm text-muted-foreground flex items-center gap-2">
+                                <!-- Calendar Icon SVG -->
+                                <div class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <i class="fa-solid fa-calendar-day"></i>
+                                </div>
+                                Year
+                            </label>
+                            <input type="text" placeholder="Any year"
+                                   class="w-full h-12 px-4 rounded-lg bg-secondary border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                        </div>
+                    </div>
+
+                    <button class="btn btn-hero w-full md:w-auto flex items-center justify-center gap-2">
+                        <!-- Search Icon SVG -->
+                        <div class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        Search Vehicles
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="flex flex-wrap gap-8">
+                    <div>
+                        <div class="font-display text-3xl font-bold text-foreground">50K+</div>
+                        <div class="text-sm text-muted-foreground">Vehicles Listed</div>
+                    </div>
+                    <div>
+                        <div class="font-display text-3xl font-bold text-foreground">2M+</div>
+                        <div class="text-sm text-muted-foreground">Happy Customers</div>
+                    </div>
+                    <div>
+                        <div class="font-display text-3xl font-bold text-foreground">500+</div>
+                        <div class="text-sm text-muted-foreground">Trusted Dealers</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Image -->
+            <div class="relative hidden lg:block">
+                <div class="relative animate-float">
+                    <img src="~/Images/corolla.jpeg" alt="Premium sports car" class="w-full h-auto rounded-2xl shadow-2xl" />
+
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-4 -left-4 glass-card px-4 py-3 flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                            <span class="text-lg font-bold text-primary-foreground">A+</span>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-foreground">Verified Quality</div>
+                            <div class="text-sm text-muted-foreground">150-point inspection</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 

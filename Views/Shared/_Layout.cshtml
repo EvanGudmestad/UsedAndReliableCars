@@ -5,25 +5,80 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/80346a94db.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <div class="App grid grid-cols-3 grid-rows-4 gap-4">
-        <div class="col-span-3 col-start-1">
-            <nav class="flex justify-center items-center gap-10 p-4 bg-gray-100">
-                <ul class="flex gap-6">
-                    <li class="cursor-pointer px-2 hover:text-green-600 transition-all duration-150">Home</li>
-                    <li class="cursor-pointer px-2 hover:text-green-600 transition-all duration-150">About Us</li>
-                    <li class="cursor-pointer px-2 hover:text-green-600 transition-all duration-150">Services</li>
-                    <li class="cursor-pointer px-2 hover:text-green-600 transition-all duration-150">Contact</li>
-                </ul>
-                <a href="#" class="ml-auto font-bold text-xl">Logo</a>
-            </nav>
+<body class="min-h-screen bg-background ">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 md:h-20">
+
+                <!-- Logo -->
+                <a href="/" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
+                        <div class="w-5 h-5 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                    </div>
+                    <span class="font-display font-bold text-xl text-foreground">
+                        Auto<span class="text-primary">Find</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors font-medium">Browse Cars</a>
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors font-medium">How It Works</a>
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors font-medium">Sell Your Car</a>
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors font-medium">About</a>
+                </nav>
+
+                <!-- Desktop CTA -->
+                <div class="hidden md:flex items-center gap-3">
+                    <button class="btn btn-ghost btn-sm">Sign In</button>
+                    <button class="btn btn-hero btn-sm">Get Started</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 text-foreground" id="mobileMenuBtn">
+                    <i class="fas fa-bars w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden py-4 border-t border-border/50 hidden" id="mobileMenu">
+                <nav class="flex flex-col gap-4">
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors font-medium py-2">Browse Cars</a>
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors font-medium py-2">How It Works</a>
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors font-medium py-2">Sell Your Car</a>
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors font-medium py-2">About</a>
+
+                    <div class="flex flex-col gap-2 pt-4 border-t border-border/50">
+                        <button class="btn btn-ghost justify-start">Sign In</button>
+                        <button class="btn btn-hero">Get Started</button>
+                    </div>
+                </nav>
+            </div>
         </div>
-        <div class="col-span-3 row-span-3 col-start-1 row-start-2">2</div>
-        <div class="row-span-3 col-start-3 row-start-2">
+    </header>
+        <div class="">
             @RenderBody()
         </div>
-        <div class="col-span-4 col-start-1 row-start-4">4</div>
-    </div>
 </body>
 </html>
+<script>
+    const btn = document.getElementById("mobileMenuBtn");
+            const menu = document.getElementById("mobileMenu");
+            let isOpen = false;
+
+            btn.addEventListener("click", () => {
+                isOpen = !isOpen;
+                menu.classList.toggle("hidden", !isOpen);
+
+                // toggle icon
+                btn.innerHTML = isOpen
+                    ? '<i class="fas fa-times w-6 h-6"></i>'
+                    : '<i class="fas fa-bars w-6 h-6"></i>';
+            });
+    
+</script>
+

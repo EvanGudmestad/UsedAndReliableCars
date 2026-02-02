@@ -10,6 +10,7 @@
     <Folder Include="Models\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
+
 	<ItemGroup>
 		<UpToDateCheckBuilt Include="wwwroot/css/site.css" Set="Css" />
 	</ItemGroup>
@@ -17,8 +18,9 @@
 		<Exec Command="npm install" />
 		<Exec Command="npx @tailwindcss/cli -i ./wwwroot/css/site.css -o ./wwwroot/css/output.css --minify" />
 		<ItemGroup>
-			<Content Include="wwwroot/css/output.css" CopyToPublishDirectory="Always" />
+			<Content Include="wwwroot/css/output.css" CopyToPublishDirectory="Always"/>
 		</ItemGroup>
 	</Target>
+	
 
 </Project>

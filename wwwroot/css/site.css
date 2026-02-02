@@ -1,25 +1,126 @@
 ﻿@import "tailwindcss";
+@layer base {
+    :root {
+        /* Colors in HSL numbers */
+        --background: 222 47% 6%;
+        --foreground: 210 40% 98%;
+        --card: 222 47% 8%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222 47% 8%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 199 89% 48%;
+        --primary-foreground: 222 47% 6%;
+        --secondary: 222 47% 12%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 222 47% 14%;
+        --muted-foreground: 215 20% 55%;
+        --accent: 38 92% 50%;
+        --accent-foreground: 222 47% 6%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 222 30% 18%;
+        --input: 222 30% 18%;
+        --ring: 199 89% 48%;
+        --radius: 0.75rem;
+        /* Gradients and shadows */
+        --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(222 47% 10%) 50%, hsl(var(--background)) 100%);
+        --gradient-card: linear-gradient(145deg, hsl(222 47% 10%) 0%, hsl(222 47% 7%) 100%);
+        --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(199 89% 38%) 100%);
+        --gradient-accent: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(25 95% 53%) 100%);
+        --shadow-glow: 0 0 40px hsl(var(--primary) / 0.2);
+        --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.3);
+    }
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-.App {
-    height: 100vh;
-    background: url('/Images/carlot.webp') center center / cover no-repeat;
+    .dark {
+        --background: 222 47% 12%; /* darker hero/body background */
+        --foreground: 210 40% 98%; /* text stays readable */
+        --card: 222 47% 14%; /* darker glass cards */
+        --muted: 222 47% 20%; /* muted text darker */
+        --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.5);
+    }
 
-}
-body{
-    height: 100vh;
-}
-.root{
-    height: 100%;
+    /* Global styles */
+    *, *::before, *::after {
+        box-sizing: border-box;
+        border-color: hsl(var(--border));
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Space Grotesk', sans-serif;
+    }
 }
 
-.title{
+/* ===========================
+   COMPONENTS
+=========================== */
+@layer components {
+    /* Glassmorphism card */
+    .glass-card {
+        background-color: hsl(var(--card) / 0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid hsl(var(--border) / 0.5);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-card);
+    }
 
+    /* Gradient text */
+    .gradient-text {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    }
+
+    /* Glow effect */
+    .glow-primary {
+        box-shadow: var(--shadow-glow);
+    }
+
+    /* Hero background gradient */
+    .hero-gradient {
+        background: var(--gradient-hero);
+    }
 }
-.sub-title{
 
+/* ===========================
+   UTILITIES / ANIMATIONS
+=========================== */
+@layer utilities {
+    /* Floating animation */
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    /* Slow pulse animation */
+    .animate-pulse-slow {
+        animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse-slow {
+        0%, 100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.5;
+        }
+    }
 }
