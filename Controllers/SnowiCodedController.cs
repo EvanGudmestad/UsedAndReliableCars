@@ -2,7 +2,7 @@
 
 namespace UsedAndReliableCars.Controllers
 {
-    public class HomeController : Controller
+    public class SnowiCoded : Controller
     {
         public IActionResult Index()
         {

@@ -1,15 +1,12 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html class="h-full bg-white">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title class="caret">@ViewData["Title"] - Aircraft Parts App</title>
+    <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/output.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewBag.Title</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-gray-50">
-    <div>
-        @RenderBody()
-    </div>
+<body class="h-full">
+    @RenderBody()
 </body>
 </html>

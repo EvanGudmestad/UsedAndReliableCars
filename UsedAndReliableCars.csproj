@@ -8,7 +8,6 @@
   </PropertyGroup>
 	<ItemGroup>
 		<UpToDateCheckBuilt Include="wwwroot/css/site.css" Set="Css" />
-		<Folder Include="Controllers\" />
 		<Folder Include="Views\Shared\" />
 	</ItemGroup>
 
