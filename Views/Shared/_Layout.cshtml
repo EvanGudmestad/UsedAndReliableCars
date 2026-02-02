@@ -3,11 +3,73 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+    <meta name="description" content="Find reliable used cars for sale at affordable prices. Certified pre-owned vehicles with quality checks and warranty options.">
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="bg-red-600 py-4 text-white shadow-lg">
+        <div class="container mx-auto flex items-center justify-between px-4">
+            <div class="flex items-center space-x-8">
+                <h1 class="text-2xl font-bold">Used&Reliable</h1>
+                <div class="hidden space-x-6 md:flex">
+                    <a href="#" class="hover:text-red-200">Cars</a>
+                    <a href="#" class="hover:text-red-200">Reviews</a>
+                    <a href="#" class="hover:text-red-200">Buying Guide</a>
+                    <a href="#" class="hover:text-red-200">News</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="hidden rounded border-2 border-white px-4 py-2 transition hover:bg-white hover:text-red-600 md:block">Sign In</button>
+                <button class="rounded bg-white px-4 py-2 font-semibold text-red-600 transition hover:bg-gray-100">Join Now</button>
+            </div>
+        </div>
+    </nav>
     <div>
         @RenderBody()
     </div>
+    <!-- Footer -->
+    <footer class="mt-12 bg-gray-900 py-12 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+                <div>
+                    <h4 class="mb-4 text-lg font-bold">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Account Settings</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Membership</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="mb-4 text-lg font-bold">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Media Room</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="mb-4 text-lg font-bold">Product Reviews</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cars</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Electronics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Appliances</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="mb-4 text-lg font-bold">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Magazine</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Newsletters</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Video</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2026 Used&Reliable, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
