@@ -6,9 +6,20 @@
 <section class="relative bg-cover bg-center min-h-screen flex items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80');">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
         <div class="max-w-md bg-white rounded-2xl shadow-2xl p-8">
-            <h1 class="text-4xl font-bold text-gray-900 mb-2">
-                Imagine the possibilities
-            </h1>
+            <!-- Logo & Title Header -->
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-xl w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                    CE
+                </div>
+                <h1 class="text-3xl font-bold text-gray-900">
+                    Imagine the possibilities
+                </h1>
+            </div>
+
+            <!-- SEO Description -->
+            <p class="text-sm text-gray-600 mb-6">
+                Discover reliable used cars with AI-powered analysis. We use Consumer Reports data and public car listings to find you the best deals on quality vehicles.
+            </p>
 
             <!-- Tabs -->
             <div class="flex border-b border-gray-300 mb-6">
@@ -40,78 +51,78 @@
             <!-- Custom Dropdowns -->
             <form class="space-y-3">
                 <!-- New/Used Dropdown -->
-                <div class="relative" x-data="{ open: false }">
+                <div class="relative" x-data="{ open: false, selected: 'New' }">
                     <label class="block text-xs font-medium text-gray-600 mb-1">New/used</label>
                     <button type="button" @@click="open = !open" @@click.away="open = false" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-left flex justify-between items-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <span class="text-gray-900 font-medium" x-text="$el.dataset.selected || 'New'"></span>
+                        <span class="text-gray-900 font-medium" x-text="selected"></span>
                         <svg class="w-5 h-5 text-gray-600 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div x-show="open" x-transition class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden">
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'New & used'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">New & used</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'New & certified'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">New & certified</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'New'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-50 bg-gray-100 text-gray-900 font-semibold">New</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Used'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Used</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Certified'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Certified</button>
+                        <button type="button" @@click="selected = 'New & used'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">New & used</button>
+                        <button type="button" @@click="selected = 'New & certified'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">New & certified</button>
+                        <button type="button" @@click="selected = 'New'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-50 bg-gray-100 text-gray-900 font-semibold">New</button>
+                        <button type="button" @@click="selected = 'Used'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Used</button>
+                        <button type="button" @@click="selected = 'Certified'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Certified</button>
                     </div>
                 </div>
 
                 <!-- Make Dropdown -->
-                <div class="relative" x-data="{ open: false }">
+                <div class="relative" x-data="{ open: false, selected: 'Select make' }">
                     <label class="block text-xs font-medium text-gray-600 mb-1">Make</label>
                     <button type="button" @@click="open = !open" @@click.away="open = false" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-left flex justify-between items-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <span class="text-gray-900 font-medium" x-text="$el.dataset.selected || 'Select make'"></span>
+                        <span class="text-gray-900 font-medium" x-text="selected"></span>
                         <svg class="w-5 h-5 text-gray-600 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div x-show="open" x-transition class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Toyota'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Toyota</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Honda'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Honda</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Ford'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Ford</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Chevrolet'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Chevrolet</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Nissan'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Nissan</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'BMW'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">BMW</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Mercedes-Benz'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Mercedes-Benz</button>
+                        <button type="button" @@click="selected = 'Toyota'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Toyota</button>
+                        <button type="button" @@click="selected = 'Honda'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Honda</button>
+                        <button type="button" @@click="selected = 'Ford'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Ford</button>
+                        <button type="button" @@click="selected = 'Chevrolet'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Chevrolet</button>
+                        <button type="button" @@click="selected = 'Nissan'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Nissan</button>
+                        <button type="button" @@click="selected = 'BMW'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">BMW</button>
+                        <button type="button" @@click="selected = 'Mercedes-Benz'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Mercedes-Benz</button>
                     </div>
                 </div>
 
                 <!-- Model Dropdown -->
-                <div class="relative" x-data="{ open: false }">
+                <div class="relative" x-data="{ open: false, selected: 'Select model' }">
                     <label class="block text-xs font-medium text-gray-600 mb-1">Model</label>
                     <button type="button" @@click="open = !open" @@click.away="open = false" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-left flex justify-between items-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <span class="text-gray-900 font-medium" x-text="$el.dataset.selected || 'Select model'"></span>
+                        <span class="text-gray-900 font-medium" x-text="selected"></span>
                         <svg class="w-5 h-5 text-gray-600 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div x-show="open" x-transition class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Camry'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Camry</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Accord'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Accord</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'F-150'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">F-150</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Silverado'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Silverado</button>
-                        <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Altima'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Altima</button>
+                        <button type="button" @@click="selected = 'Camry'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Camry</button>
+                        <button type="button" @@click="selected = 'Accord'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Accord</button>
+                        <button type="button" @@click="selected = 'F-150'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">F-150</button>
+                        <button type="button" @@click="selected = 'Silverado'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Silverado</button>
+                        <button type="button" @@click="selected = 'Altima'; open = false" class="w-full px-4 py-3 text-left hover:bg-gray-100 text-gray-900">Altima</button>
                     </div>
                 </div>
 
                 <!-- Distance and ZIP in a row -->
                 <div class="grid grid-cols-2 gap-3">
                     <!-- Distance Dropdown -->
-                    <div class="relative" x-data="{ open: false }">
+                    <div class="relative" x-data="{ open: false, selected: '50 miles' }">
                         <label class="block text-xs font-medium text-gray-600 mb-1">Distance</label>
                         <button type="button" @@click="open = !open" @@click.away="open = false" class="w-full px-3 py-3 bg-white border border-gray-300 rounded-lg text-left flex justify-between items-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <span class="text-gray-900 font-medium text-sm" x-text="$el.dataset.selected || '50 miles'"></span>
+                            <span class="text-gray-900 font-medium text-sm" x-text="selected"></span>
                             <svg class="w-4 h-4 text-gray-600 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
                         <div x-show="open" x-transition class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
-                            <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = '10 miles'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">10 miles</button>
-                            <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = '25 miles'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">25 miles</button>
-                            <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = '50 miles'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">50 miles</button>
-                            <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = '100 miles'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">100 miles</button>
-                            <button type="button" @@click="$el.closest('.relative').querySelector('button').dataset.selected = 'Nationwide'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">Nationwide</button>
+                            <button type="button" @@click="selected = '10 miles'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">10 miles</button>
+                            <button type="button" @@click="selected = '25 miles'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">25 miles</button>
+                            <button type="button" @@click="selected = '50 miles'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">50 miles</button>
+                            <button type="button" @@click="selected = '100 miles'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">100 miles</button>
+                            <button type="button" @@click="selected = 'Nationwide'; open = false" class="w-full px-3 py-2 text-left hover:bg-gray-100 text-gray-900 text-sm">Nationwide</button>
                         </div>
                     </div>
 
@@ -123,7 +134,7 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 rounded-lg transition mt-6">
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mt-6">
                     Show 423 matches
                 </button>
             </form>
