@@ -1,0 +1,78 @@
+﻿@import "tailwindcss";
+
+@layer utilities {
+    .caret {
+        color: #ff0000;
+        animation: blink 1s step-end infinite;
+        user-select: none;
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1; /* Visible */
+    }
+
+    50% {
+        opacity: 0; /* Invisible */
+    }
+}
+
+/* Custom hamburger menu icon spacing */
+.hamburger-icon {
+    margin-right: 15px;
+}
+
+.sign-in {
+    margin-left: 40px;
+    padding-right: 40px;
+}       
+
+/* Add padding to mobile menu button */
+button.xl\:hidden {
+    padding: 8px 12px;
+}
+
+/* Ensure navbar has solid white background */
+nav {
+    background-color: #ffffff !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Extra protection for navbar background */
+.navbar-solid {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+}
+
+/* Footer customizations */
+.footer-gradient {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+}
+
+.social-icon {
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    filter: drop-shadow(0 4px 6px rgba(147, 51, 234, 0.5));
+}
+
+/* Mobile menu animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-menu-enter {
+    animation: slideDown 0.2s ease-out;
+}
