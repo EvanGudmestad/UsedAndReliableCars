@@ -1,13 +1,202 @@
-﻿<!DOCTYPE html>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Used and Reliable Cars | Best Used Car Deals, Consumer Reports Picks, AI Car Finder</title>
+    <meta name="description" content="Find the best used and reliable cars based on Consumer Reports top picks. Our AI agent analyzes public car listings to surface the best deals on safe, dependable used vehicles." />
+    <meta name="keywords" content="used cars, reliable used cars, Consumer Reports used cars, best used car deals, AI car finder, used car marketplace, dependable used vehicles, CR recommended used cars" />
+    <!-- Google Font: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+    <!-- Tailwind config MUST run before Tailwind CDN so custom theme is applied -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: {
+                            DEFAULT: '#0a0908',
+                            100: '#020202',
+                            200: '#050404',
+                            300: '#070605',
+                            400: '#090807',
+                            500: '#0a0908',
+                            600: '#423b35',
+                            700: '#786c60',
+                            800: '#a89d92',
+                            900: '#d3cec9'
+                        },
+                        'jet-black': {
+                            DEFAULT: '#22333b',
+                            100: '#070a0c',
+                            200: '#0d1417',
+                            300: '#141e23',
+                            400: '#1b282f',
+                            500: '#22333b',
+                            600: '#40606f',
+                            700: '#608ea3',
+                            800: '#95b4c2',
+                            900: '#cad9e0'
+                        },
+                        'almond-cream': {
+                            DEFAULT: '#eae0d5',
+                            100: '#3c2d1e',
+                            200: '#775b3c',
+                            300: '#ae885f',
+                            400: '#ccb49b',
+                            500: '#eae0d5',
+                            600: '#efe7de',
+                            700: '#f3ede7',
+                            800: '#f7f3ef',
+                            900: '#fbf9f7'
+                        },
+                        'khaki-beige': {
+                            DEFAULT: '#c6ac8f',
+                            100: '#2d2317',
+                            200: '#5b462e',
+                            300: '#886945',
+                            400: '#b08b62',
+                            500: '#c6ac8f',
+                            600: '#d2bda5',
+                            700: '#ddcebc',
+                            800: '#e8ded2',
+                            900: '#f4efe9'
+                        },
+                        'stone-brown': {
+                            DEFAULT: '#5e503f',
+                            100: '#13100d',
+                            200: '#262019',
+                            300: '#393026',
+                            400: '#4c4133',
+                            500: '#5e503f',
+                            600: '#89755b',
+                            700: '#ab9880',
+                            800: '#c7baab',
+                            900: '#e3ddd5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom theme fallback: ensures palette is always visible (Tailwind CDN JIT may miss some classes) -->
+    <style>
+        body { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif; }
+        /* Theme: black */
+        .bg-black, .bg-black-500 { background-color: #0a0908 !important; }
+        .text-black { color: #0a0908 !important; }
+        /* Theme: jet-black */
+        .bg-jet-black { background-color: #22333b !important; }
+        .bg-jet-black-400 { background-color: #1b282f !important; }
+        .bg-jet-black-600 { background-color: #40606f !important; }
+        .text-jet-black { color: #22333b !important; }
+        .border-jet-black-600 { border-color: #40606f !important; }
+        /* Theme: almond-cream */
+        .bg-almond-cream-500 { background-color: #eae0d5 !important; }
+        .bg-almond-cream-700 { background-color: #f3ede7 !important; }
+        .bg-almond-cream-800 { background-color: #f7f3ef !important; }
+        .text-almond-cream-300 { color: #ae885f !important; }
+        .text-almond-cream-500 { color: #eae0d5 !important; }
+        .text-almond-cream-700 { color: #f3ede7 !important; }
+        /* Theme: khaki-beige */
+        .bg-khaki-beige-300 { background-color: #886945 !important; }
+        .bg-khaki-beige-500 { background-color: #c6ac8f !important; }
+        .border-khaki-beige-300 { border-color: #886945 !important; }
+        .focus\:ring-khaki-beige-500:focus { --tw-ring-color: #c6ac8f !important; }
+        .hover\:bg-khaki-beige-400:hover { background-color: #b08b62 !important; }
+        /* Theme: stone-brown */
+        .text-stone-brown-500 { color: #5e503f !important; }
+        .text-stone-brown-600 { color: #89755b !important; }
+        .border-stone-brown-400 { border-color: #4c4133 !important; }
+        .text-jet-black-700 { color: #608ea3 !important; }
+        .hover\:text-jet-black:hover { color: #22333b !important; }
+        /* Hero gradient (jet-black → stone-brown) */
+        .bg-gradient-to-br.from-jet-black { background-image: linear-gradient(to bottom right, #22333b, #22333b 50%, #5e503f) !important; }
+        .bg-jet-black:hover { background-color: #40606f !important; }
+    </style>
 </head>
-<body>
-    <div>
+<body class="bg-almond-cream-800 text-black min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-jet-black shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="text-almond-cream-500 font-bold text-xl tracking-tight">Used &amp; Reliable Cars</a>
+                <!-- Desktop links -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/" class="text-almond-cream-500 hover:text-almond-cream-300 transition">Home</a>
+                    <a href="#about" class="text-almond-cream-500 hover:text-almond-cream-300 transition">About</a>
+                    <a href="#filter" class="text-almond-cream-500 hover:text-almond-cream-300 transition">Find Cars</a>
+                    <a href="#" class="text-almond-cream-500 hover:text-almond-cream-300 transition">How It Works</a>
+                    <a href="#" class="text-almond-cream-500 hover:text-almond-cream-300 transition">Contact</a>
+                </div>
+                <!-- Mobile menu button -->
+                <button type="button" id="nav-toggle" class="md:hidden p-2 rounded-lg text-almond-cream-500 hover:bg-jet-black-400 focus:outline-none focus:ring-2 focus:ring-khaki-beige-500" aria-label="Toggle menu">
+                    <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="icon-close" class="hidden w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Collapsible mobile menu -->
+        <div id="nav-menu" class="hidden md:hidden bg-jet-black-400 border-t border-jet-black-600">
+            <div class="px-4 py-3 space-y-2">
+                <a href="/" class="block text-almond-cream-500 hover:text-almond-cream-300 py-2">Home</a>
+                <a href="#about" class="block text-almond-cream-500 hover:text-almond-cream-300 py-2">About</a>
+                <a href="#filter" class="block text-almond-cream-500 hover:text-almond-cream-300 py-2">Find Cars</a>
+                <a href="#" class="block text-almond-cream-500 hover:text-almond-cream-300 py-2">How It Works</a>
+                <a href="#" class="block text-almond-cream-500 hover:text-almond-cream-300 py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
         @RenderBody()
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-jet-black text-almond-cream-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <span class="font-semibold">Used and Reliable Cars</span>
+                <span>&copy; @DateTime.Now.Year Used and Reliable Cars. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            var toggle = document.getElementById('nav-toggle');
+            var menu = document.getElementById('nav-menu');
+            var iconMenu = document.getElementById('icon-menu');
+            var iconClose = document.getElementById('icon-close');
+            function openMenu() {
+                menu.classList.remove('hidden');
+                iconMenu.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            }
+            function closeMenu() {
+                menu.classList.add('hidden');
+                iconMenu.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+            toggle.addEventListener('click', function() {
+                if (menu.classList.contains('hidden')) openMenu(); else closeMenu();
+            });
+            menu.querySelectorAll('a').forEach(function(a) {
+                a.addEventListener('click', closeMenu);
+            });
+        })();
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

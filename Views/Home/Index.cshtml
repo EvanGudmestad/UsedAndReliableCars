@@ -1,1 +1,115 @@
-﻿<h1>Welcome Home</h1>
+@{
+    ViewData["Title"] = "Best Used & Reliable Cars | Consumer Reports Picks, AI-Powered Deals";
+}
+
+<!-- Hero -->
+<section class="bg-gradient-to-br from-jet-black via-jet-black-500 to-stone-brown-500 text-almond-cream-500 py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-almond-cream-500 mb-6">
+            Used and Reliable Cars: Best Deals on CR-Recommended Used Vehicles
+        </h1>
+        <p class="text-xl md:text-2xl text-almond-cream-700 max-w-3xl mb-8">
+            Find safe, dependable used cars backed by Consumer Reports. We use public car listing data and an AI agent to surface the best deals on the most reliable used cars and SUVs.
+        </p>
+        <a href="#filter" class="inline-block bg-khaki-beige-500 hover:bg-khaki-beige-400 text-black font-semibold px-6 py-3 rounded-lg transition shadow-lg">
+            Find Your Car
+        </a>
+    </div>
+</section>
+
+<!-- Purpose / About -->
+<section id="about" class="py-16 bg-almond-cream-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-jet-black mb-6">Why Used and Reliable Cars?</h2>
+        <div class="prose prose-lg max-w-none text-stone-brown-500">
+            <p class="text-stone-brown-600 leading-relaxed">
+                Our purpose is to help you find <strong>used and reliable cars</strong> as defined by Consumer Reports—vehicles that performed well in road tests when new, have consistently above-average reliability from owner surveys, and include important safety features like electronic stability control and available automatic emergency braking.
+            </p>
+            <p class="text-stone-brown-600 leading-relaxed mt-4">
+                We combine <strong>Consumer Reports’ Used Car Top Picks</strong> with <strong>public car listing data</strong> and an <strong>AI agent</strong> that analyzes listings to identify the best deals. Instead of guessing which used cars are dependable, you can focus on CR-recommended models and let our tool help you find the right vehicle at a fair price.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Filter Form: 10 Consumer Reports Top Picks -->
+<section id="filter" class="py-16 bg-almond-cream-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-jet-black mb-2">Filter Consumer Reports’ 10 Used Car Top Picks</h2>
+        <p class="text-stone-brown-600 mb-8">
+            Based on <a href="https://www.consumerreports.org/cars/best-used-cars-10-top-picks-a8027733372/#used-car-top-picks-under-10000" target="_blank" rel="noopener" class="text-jet-black-700 underline hover:text-jet-black">Consumer Reports’ Best Used Cars: 10 Top Picks</a>. Select one or more models to find the best deals.
+        </p>
+
+        <form method="get" action="#" class="bg-almond-cream-500 rounded-xl shadow-lg p-6 md:p-8 border border-khaki-beige-300">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Car selection -->
+                <div>
+                    <label class="block text-stone-brown-600 font-semibold mb-3">Select models (CR Top Picks)</label>
+                    <div class="space-y-2 max-h-80 overflow-y-auto pr-2">
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="mazda6-2016" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Mazda6 (2016) — Under $10,000</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="corolla-2019" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Toyota Corolla (2019) — Under $15,000</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="equinox-2019" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Chevrolet Equinox (2019) — SUV Under $15,000</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="corolla-hybrid-2021" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Toyota Corolla Hybrid (2021) — Hybrid Under $20,000</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="crosstrek-2020" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Subaru Crosstrek (2020) — Small SUV Under $20,000</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="rav4-hybrid-2018" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Toyota RAV4 Hybrid (2018) — Hybrid SUV Under $20,000</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="highlander-2018" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Toyota Highlander (2018) — 3-Row SUV Under $20,000</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="lexus-nx-2018" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Lexus NX (2018) — Luxury SUV Under $20,000</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="ridgeline-2020" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Honda Ridgeline (2020) — Pickup Truck Under $25,000</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer text-stone-brown-600 hover:text-jet-black">
+                            <input type="checkbox" name="models" value="miata-2021" class="rounded border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500" />
+                            <span>Mazda MX-5 Miata (2021) — Sports Car Under $20,000</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Additional filters -->
+                <div class="space-y-4">
+                    <div>
+                        <label for="maxPrice" class="block text-stone-brown-600 font-semibold mb-1">Max price (optional)</label>
+                        <input type="number" id="maxPrice" name="maxPrice" min="0" step="1000" placeholder="e.g. 15000" class="w-full rounded-lg border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500 focus:border-khaki-beige-500" />
+                    </div>
+                    <div>
+                        <label for="minYear" class="block text-stone-brown-600 font-semibold mb-1">Minimum year (optional)</label>
+                        <input type="number" id="minYear" name="minYear" min="2010" max="2025" placeholder="e.g. 2016" class="w-full rounded-lg border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500 focus:border-khaki-beige-500" />
+                    </div>
+                    <div>
+                        <label for="zip" class="block text-stone-brown-600 font-semibold mb-1">ZIP code (optional)</label>
+                        <input type="text" id="zip" name="zip" placeholder="e.g. 12345" pattern="[0-9]{5}" maxlength="5" class="w-full rounded-lg border-stone-brown-400 text-jet-black focus:ring-khaki-beige-500 focus:border-khaki-beige-500" />
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit" class="w-full md:w-auto bg-jet-black hover:bg-jet-black-600 text-almond-cream-500 font-semibold px-6 py-3 rounded-lg transition">
+                            Search deals
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
