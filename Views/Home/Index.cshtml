@@ -1,1 +1,189 @@
-﻿<h1>Welcome Home</h1>
+﻿<script src="https://cdn.jsdelivr.net/npm/@@tailwindplus/elements@1" type="module"></script>
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden hero-gradient">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 -right-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 -left-32 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium">
+                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    Over 50,000+ vehicles available
+                </div>
+
+                <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                    Find Your <span class="gradient-text">Perfect Car</span> in Minutes
+                </h1>
+
+                <p class="text-lg text-muted-foreground max-w-lg">
+                    Discover the easiest way to find, compare, and purchase your dream vehicle.
+                    Trusted by over 2 million happy customers worldwide.
+                </p>
+
+                <!-- Search Box -->
+                @* <div class="glass-card p-4 md:p-6 space-y-4">
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <!-- Make & Model -->
+                        <div class="space-y-2">
+                            <label class="text-sm text-muted-foreground flex items-center gap-2">
+                                <!-- Car Icon SVG -->
+                                <div class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                Under $25,000
+                            </label>
+                            <input type="text" placeholder="Any make or model"
+                                   class="w-full h-12 px-4 rounded-lg bg-secondary border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                        </div>
+
+                        <!-- Location -->
+                        <div class="space-y-2">
+                            <label class="text-sm text-muted-foreground flex items-center gap-2">
+                                <!-- MapPin Icon SVG -->
+                                <div class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                Under $20,000
+                            </label>
+                            <input type="text" placeholder="Enter ZIP code"
+                                   class="w-full h-12 px-4 rounded-lg bg-secondary border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                        </div>
+
+                        <!-- Year -->
+                        <div class="space-y-2">
+                            <label class="text-sm text-muted-foreground flex items-center gap-2">
+                                <!-- Calendar Icon SVG -->
+                                <div class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <i class="fa-solid fa-calendar-day"></i>
+                                </div>
+                                Under $15,000
+                            </label>
+                            <input type="text" placeholder="Any year"
+                                   class="w-full h-12 px-4 rounded-lg bg-secondary border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" />
+                        </div>
+                    </div>
+
+                    <button class="btn btn-hero w-full md:w-auto flex items-center justify-center gap-2">
+                        <!-- Search Icon SVG -->
+                        <div class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        Search Vehicles
+                    </button>
+                </div> *@
+
+                <!-- Stats -->
+                <div class="flex flex-wrap gap-8">
+                    <div>
+                        <div class="font-display text-3xl font-bold text-foreground">50K+</div>
+                        <div class="text-sm text-muted-foreground">Vehicles Listed</div>
+                    </div>
+                    <div>
+                        <div class="font-display text-3xl font-bold text-foreground">2M+</div>
+                        <div class="text-sm text-muted-foreground">Happy Customers</div>
+                    </div>
+                    <div>
+                        <div class="font-display text-3xl font-bold text-foreground">500+</div>
+                        <div class="text-sm text-muted-foreground">Trusted Dealers</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Image -->
+            <div class="relative hidden lg:block">
+                <div class="relative animate-float">
+                    <img src="~/Images/corolla.jpeg" alt="Premium sports car" class="w-full h-auto rounded-2xl shadow-2xl" />
+
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-4 -left-4 glass-card px-4 py-3 flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                            <span class="text-lg font-bold text-primary-foreground">A+</span>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-foreground">Verified Quality</div>
+                            <div class="text-sm text-muted-foreground">150-point inspection</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<section class="container mx-auto px-4 py-12">
+    <div class="glass-card p-6 bg-white/70 backdrop-blur-md rounded-xl shadow-lg">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="font-display text-xl font-semibold text-foreground">Filter Vehicles</h3>
+            <button class="text-muted-foreground hover:text-foreground text-sm flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Clear Filters By Price
+            </button>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 bg-secondary/30">
+            <!-- Search -->
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-foreground" for="search">Under $10,000</label>
+                <select class="w-full h-12 rounded-lg bg-background/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <option>Mazda6 2016</option>
+                </select>
+            </div>
+
+            <!-- Make -->
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-foreground">Under $15,000</label>
+                <select class="w-full h-12 rounded-lg bg-background/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <option>Toyota Corolla 2019</option>
+                    <option>Chevrolet Equinox 2019</option>
+                </select>
+            </div>
+
+            <!-- Category -->
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-foreground">Under $20,000</label>
+                <select class="w-full h-12 rounded-lg bg-background/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <option>Toyota Corolla Hybrid 2021</option>
+                    <option>Subaru Crosstrek 2020</option>
+                    <option>Toyota RAV4 Hybrid 2018,</option>
+                    <option>Toyota Highlander 2018,</option>
+                    <option>Lexus NX 2018</option>
+                    <option>Mazda MX-5 Miata 2021</option>
+                </select>
+            </div>
+            <div class="space-y-2">
+                <label class="block text-sm font-medium text-foreground">Under $25,000</label>
+                <select class="w-full h-12 rounded-lg bg-background/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+                    <option>Honda Ridgeline 2020</option>
+                </select>
+            </div>
+        </div>
+        <div class="mt-6 space-y-3">
+            <label class="block text-sm font-medium text-foreground">Full Type</label>
+            <div class="flex flex-wrap gap-4">
+                <label class="flex items-center gap-2 text-sm font-normal cursor-pointer">
+                    <input type="checkbox" class="w-4 h-4 text-primary border border-border rounded" />
+                    Gasoline
+                </label>
+                <label class="flex items-center gap-2 text-sm font-normal cursor-pointer">
+                    <input type="checkbox" class="w-4 h-4 text-primary border border-border rounded" />
+                    Hybrid
+                </label>
+                <label class="flex items-center gap-2 text-sm font-normal cursor-pointer">
+                    <input type="checkbox" class="w-4 h-4 text-primary border border-border rounded" />
+                    Electric
+                </label>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
