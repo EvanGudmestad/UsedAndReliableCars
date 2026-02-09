@@ -1,1 +1,49 @@
-﻿<h1>Welcome Home</h1>
+﻿@model Car;
+@{
+    ViewData["Title"] = "Used and Reliable Cars";
+}
+
+<div class="mx-8 mt-4">
+    <div class="mx-4 py-2 bg-green-700 rounded-lg">
+        <h1 class=" text-slate-100 font-bebasneueregular text-center text-2xl">Used and Reliable Cars</h1>
+    </div>
+
+    <div class="mx-4 mt-4 py-2 bg-green-700 rounded-lg">
+        <h1 class="text-2xl text-center text-slate-100">About Us</h1>
+        <h3 class="text-lg mx-4 my-2 text-slate-300">The purpose of the site which is to isolate used and reliable cars as defined by Consumer Reports, use public car listing data to have an AI Agent analyze the best deals.</h3>
+    </div>
+
+    <form action="/" method="post" class="bg-purple-500/75 mt-8">
+        <input type="radio" name="car" value="Mazda6" />
+        <label for="car1">2016 Mazda6</label>
+        <br />
+        <input type="radio" name="car" value="ToyotaCorolla" />
+        <label for="car2">2019 Toyota Corolla</label>
+        <br />
+        <input type="radio" name="car" value="ChevroletEquinox" />
+        <label for="car3">2019 Chevrolet Equinox</label>
+        <br />
+        <input type="radio" name="car" value="ToyotaCorollaHybrid" />
+        <label for="car4">2021 Toyota Corolla Hybrid</label>
+        <br />
+        <input type="radio" name="car" value="SubaruCrosstrek" />
+        <label for="car5">2020 Subaru Crosstrek</label>
+        <br />
+        <input type="radio" name="car" value="ToyotaRAV4Hybrid" />
+        <label for="car6">2018 Toyota RAV4 Hybrid</label>
+        <br />
+        <input type="radio" name="car" value="ToyotaHighlander" />
+        <label for="car7">2018 Toyota Highlander</label>
+        <br />
+        <input type="radio" name="car" value="LexusNX" />
+        <label for="car8">2018 Lexus NX</label>
+        <br />
+        <input type="radio" name="car" value="HondaRidgeline" />
+        <label for="car9">2020 Honda Ridgeline</label>
+        <br />
+        <input type="radio" name="car" value="MazdaMX-5Miata" />
+        <label for="car10">2021 Mazda MX-5 Miata</label>
+        <br />
+        <button type="submit" class="mt-2 bg-green-600 text-white hover:bg-green-500 hover:text-green-100 rounded-lg">View Cars</button>
+    </form>
+</div>
