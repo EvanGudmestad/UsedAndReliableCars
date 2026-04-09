@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/BrodyBoyd/UsedAndReliableCars#readme",
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.18",
+    "@tailwindcss/cli": "^4.2.2",
     "tailwindcss": "^4.1.18"
   }
 }

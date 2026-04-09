@@ -7,17 +7,10 @@ namespace UsedAndReliableCars.API
     [ApiController]
     public class APIController : ControllerBase
     {
-        private readonly UsedCar usedCars;
-
-        public APIController( UsedCar usedCars )
-        {
-            this.usedCars = usedCars;
-        }
-
         [HttpGet]
-        public async Task<IActionResult> GetAllCars()
+        public IActionResult GetAllCars()
         {
-            var usedCarList = usedCars.UsedCars;
+            var usedCarList = new UsedCar().UsedCars;
             return Ok(usedCarList);
         }
     }

@@ -1,0 +1,13 @@
+﻿@UsedAndReliableCars_HostAddress = https://localhost:7267
+
+GET {{UsedAndReliableCars_HostAddress}}/Cars/api
+
+###
+
+GET {{UsedAndReliableCars_HostAddress}}/api/api
+
+###
+
+GET {{UsedAndReliableCars_HostAddress}}/api/api
+
+###

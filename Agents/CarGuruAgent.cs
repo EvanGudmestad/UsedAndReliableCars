@@ -1,0 +1,101 @@
+﻿using OpenAI.Chat;
+using System.Text.Json;
+using UsedAndReliableCars.Models;
+using UsedAndReliableCars.Services;
+
+namespace UsedAndReliableCars.Agents
+{
+    public class CarGuruAgent
+    {
+        private readonly ChatClient _chatClient;
+        private readonly IMarketCheckApiService _marketCheckService;
+
+        public CarGuruAgent( ChatClient chatClient, IMarketCheckApiService marketCheckService )
+        {
+            _chatClient = chatClient;
+            _marketCheckService = marketCheckService;
+        }
+
+        public async Task<string> AskAsync(
+            string question,
+            string? make = null,
+            string? year = null,
+            string? zip = null )
+        {
+            try
+            {
+                var carData = await GetCarDataAsync(make, year, zip);
+
+                var messages = new List<ChatMessage>
+                {
+                    new SystemChatMessage(
+                        $"""
+                        You are a helpful car inventory assistant for a used car dealership.
+                        Answer questions only using the real market listings data provided below.
+                        Do not invent or assume any details not present in the data.
+                        Car listings (JSON):
+                        {carData}
+                        """
+                    ),
+                    new UserChatMessage(question)
+                };
+
+                ChatCompletion completion = await _chatClient.CompleteChatAsync(messages);
+                return completion.Content.FirstOrDefault()?.Text ?? "No response.";
+            }
+            catch (HttpRequestException httpEx)
+            {
+                return $"Error fetching car data: {httpEx.Message}";
+            }
+            catch (Exception ex)
+            {
+                return $"Error generating response: {ex.Message}";
+            }
+        }
+
+        private async Task<string> GetCarDataAsync( string? make, string? year, string? zip )
+        {
+            // Build query params for MarketCheck API
+            var queryParams = new Dictionary<string, string>();
+
+            if (!string.IsNullOrEmpty(make)) queryParams["make"] = make;
+            if (!string.IsNullOrEmpty(year)) queryParams["year"] = year;
+            if (!string.IsNullOrEmpty(zip)) queryParams["zip"] = zip;
+
+            // Always cap rows to avoid blowing the context window
+            queryParams["rows"] = "20";
+            queryParams["start"] = "0";
+
+            var httpResponse = await _marketCheckService.SearchActiveAsync(queryParams);
+            httpResponse.EnsureSuccessStatusCode();
+
+            var json = await httpResponse.Content.ReadAsStringAsync();
+
+            // Deserialize into our typed model
+            var result = JsonSerializer.Deserialize<MarketCheckSearchResponse>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            if (result?.Listings == null || result.Listings.Count == 0)
+                return "No listings found matching your criteria.";
+
+            // Slim down to essentials — photos/URLs etc. waste tokens
+            var slim = result.Listings.Select(l => new
+            {
+                l.Year,
+                l.Make,
+                l.Model,
+                l.Trim,
+                l.Price,
+                l.Miles,
+                l.ExteriorColor,
+                l.InteriorColor,
+                l.City,
+                l.State,
+                l.SellerName,
+                l.VdpUrl
+            });
+
+            return JsonSerializer.Serialize(slim, new JsonSerializerOptions { WriteIndented = true });
+        }
+    }
+}

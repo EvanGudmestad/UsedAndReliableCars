@@ -1,4 +1,4 @@
-/*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.2.2 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -14,25 +14,9 @@
     --color-green-100: oklch(96.2% 0.044 156.743);
     --color-green-700: oklch(52.7% 0.154 150.069);
     --color-green-800: oklch(44.8% 0.119 151.328);
-    --color-blue-50: oklch(97% 0.014 254.604);
-    --color-blue-100: oklch(93.2% 0.032 255.585);
-    --color-blue-300: oklch(80.9% 0.105 251.813);
-    --color-blue-400: oklch(70.7% 0.165 254.624);
-    --color-blue-600: oklch(54.6% 0.245 262.881);
-    --color-blue-700: oklch(48.8% 0.243 264.376);
-    --color-blue-800: oklch(42.4% 0.199 265.638);
-    --color-violet-700: oklch(49.1% 0.27 292.581);
-    --color-slate-900: oklch(20.8% 0.042 265.755);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-200: oklch(92.8% 0.006 264.531);
-    --color-gray-300: oklch(87.2% 0.01 258.338);
-    --color-gray-400: oklch(70.7% 0.022 261.325);
-    --color-gray-500: oklch(55.1% 0.027 264.364);
-    --color-gray-600: oklch(44.6% 0.03 256.802);
-    --color-gray-700: oklch(37.3% 0.034 259.733);
-    --color-gray-800: oklch(27.8% 0.033 256.848);
-    --color-gray-900: oklch(21% 0.034 264.665);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -244,6 +228,12 @@
   }
   .inset-0 {
     inset: calc(var(--spacing) * 0);
+  }
+  .start {
+    inset-inline-start: var(--spacing);
+  }
+  .end {
+    inset-inline-end: var(--spacing);
   }
   .top-0 {
     top: calc(var(--spacing) * 0);
@@ -567,23 +557,14 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
-  .border-gray-300 {
-    border-color: var(--color-gray-300);
-  }
   .border-red-200 {
     border-color: var(--color-red-200);
-  }
-  .border-white {
-    border-color: var(--color-white);
   }
   .bg-black {
     background-color: var(--color-black);
   }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
-  }
-  .bg-gray-100 {
-    background-color: var(--color-gray-100);
   }
   .bg-gray-200 {
     background-color: var(--color-gray-200);
@@ -597,12 +578,6 @@
   .bg-red-100 {
     background-color: var(--color-red-100);
   }
-  .bg-slate-900 {
-    background-color: var(--color-slate-900);
-  }
-  .bg-white {
-    background-color: var(--color-white);
-  }
   .bg-gradient-to-b {
     --tw-gradient-position: to bottom in oklab;
     background-image: linear-gradient(var(--tw-gradient-stops));
@@ -613,10 +588,6 @@
   }
   .from-transparent {
     --tw-gradient-from: transparent;
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-  .to-white {
-    --tw-gradient-to: var(--color-white);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .object-cover {
@@ -773,27 +744,6 @@
   .text-gray-200 {
     color: var(--color-gray-200);
   }
-  .text-gray-300 {
-    color: var(--color-gray-300);
-  }
-  .text-gray-400 {
-    color: var(--color-gray-400);
-  }
-  .text-gray-500 {
-    color: var(--color-gray-500);
-  }
-  .text-gray-600 {
-    color: var(--color-gray-600);
-  }
-  .text-gray-700 {
-    color: var(--color-gray-700);
-  }
-  .text-gray-800 {
-    color: var(--color-gray-800);
-  }
-  .text-gray-900 {
-    color: var(--color-gray-900);
-  }
   .text-green-700 {
     color: var(--color-green-700);
   }
@@ -841,9 +791,6 @@
   .ring-2 {
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-  .ring-white {
-    --tw-ring-color: var(--color-white);
   }
   .outline {
     outline-style: var(--tw-outline-style);
@@ -910,10 +857,20 @@
   }
 }
 :root {
-  --charcoal: #1F2933;
-  --dark: #4A4A4A;
-  --electric: #0AC4FF;
-  --purewhite: #FFFFFF;
+  --jet: #0A0908;
+  --charcoal: #22333B;
+  --bone: #EAE0D5;
+  --tan: #C6AC8F;
+  --brown: #5E503F;
+  --accent: #C6AC8F;
+  --accent-dark: #5E503F;
+  --surface: #EAE0D5;
+  --bg-dark: #22333B;
+  --text-body: #22333B;
+  --text-light: #EAE0D5;
+  --dark: #22333B;
+  --electric: #C6AC8F;
+  --purewhite: #EAE0D5;
 }
 .car-Background {
   background-image: url("/images/CarBackground.jpg");
@@ -939,7 +896,7 @@
   }
 }
 .animated-bg {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: linear-gradient(-45deg, #5E503F, #22333B, #C6AC8F, #0A0908);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 }
@@ -1097,7 +1054,7 @@
   pointer-events: none;
 }
 .inputbox input:valid ~ span, .inputbox input:focus ~ span {
-  color: #AD76FA;
+  color: #C6AC8F;
   transform: translateX(-10px) translateY(-34px);
   font-size: 0,75em;
 }
@@ -1107,7 +1064,7 @@
   bottom: 0;
   width: 100%;
   height: 2px;
-  background: #AD76FA;
+  background: #C6AC8F;
   border-radius: 4px;
   transition: 0.5s;
   pointer-events: none;
@@ -1123,7 +1080,7 @@
   content: '';
   width: 0%;
   height: 4px;
-  background: #0AC4FF;
+  background: #C6AC8F;
   display: block;
   transition: 0.8s;
 }
@@ -1138,12 +1095,12 @@
   font-size: 1rem;
   cursor: pointer;
   position: relative;
-  background: linear-gradient(90deg, #5bfcc4, #f593e4, #71a4f0);
+  background: linear-gradient(90deg, #C6AC8F, #5E503F, #22333B);
   border-radius: 12px;
-  color: #fff;
+  color: #EAE0D5;
   transition: all 0.3s ease;
-  box-shadow: inset 0px 0px 5px #ffffffa9, inset 0px 35px 30px #000, 0px 5px 10px #000000cc;
-  text-shadow: 1px 1px 1px #000;
+  box-shadow: inset 0px 0px 5px #ffffff55, inset 0px 35px 30px #0A0908, 0px 5px 10px #0A090899;
+  text-shadow: 1px 1px 1px #0A0908;
 }
 .outer-cont::before {
   content: "";
@@ -1154,7 +1111,7 @@
   filter: blur(0);
   z-index: -1;
   box-shadow: none;
-  background: conic-gradient( #00000000 80deg, #40baf7, #f34ad7, #5bfcc4, #00000000 280deg );
+  background: conic-gradient( #00000000 80deg, #C6AC8F, #5E503F, #EAE0D5, #00000000 280deg );
   transition: all 0.3s ease;
 }
 .outer-cont:hover::before {
@@ -1171,8 +1128,8 @@
 .line-bg {
   width: 100%;
   height: 100%;
-  --color: rgba(114, 114, 114, 0.3);
-  background-color: #191a1a;
+  --color: rgba(198, 172, 143, 0.2);
+  background-color: #0A0908;
   background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent), linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
   background-size: 55px 55px;
 }
@@ -1180,17 +1137,17 @@
   width: 60%;
   max-width: 900px;
   margin: 0 auto;
-  background-color: #ffffff;
-  border: 1px solid #e5d4ff;
+  background-color: #EAE0D5;
+  border: 1px solid #C6AC8F;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba(10, 9, 8, 0.25);
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 .chat-header {
-  background: linear-gradient(90deg, #0AC4FF, #28c9fc);
-  color: #ffffff;
+  background: linear-gradient(90deg, #22333B, #5E503F);
+  color: #EAE0D5;
   padding: 14px 18px;
   font-size: 20px;
   font-weight: 600;
@@ -1199,7 +1156,7 @@
   height: 350px;
   overflow-y: auto;
   padding: 16px;
-  background-color: #faf7ff;
+  background-color: #f5ede3;
 }
 .message-list {
   list-style: none;
@@ -1210,27 +1167,28 @@
   display: flex;
   align-items: center;
   padding: 12px;
-  border-top: 1px solid #e5d4ff;
-  background-color: #ffffff;
+  border-top: 1px solid #C6AC8F;
+  background-color: #EAE0D5;
 }
 .message-input {
   flex: 1;
-  border: 1px solid #d6bbfc;
-  background-color: #faf7ff;
+  border: 1px solid #C6AC8F;
+  background-color: #f5ede3;
   border-radius: 8px;
   padding: 10px;
   font-size: 15px;
   outline: none;
   transition: border 0.2s ease;
+  color: #22333B;
 }
 .message-input:focus {
-  border-color: #7c3aed;
+  border-color: #5E503F;
 }
 .send-button {
   margin-left: 10px;
   border: none;
-  background-color: #7c3aed;
-  color: #ffffff;
+  background-color: #5E503F;
+  color: #EAE0D5;
   font-size: 15px;
   padding: 10px 16px;
   border-radius: 8px;
@@ -1238,10 +1196,10 @@
   transition: all 0.2s ease;
 }
 .send-button:hover {
-  background-color: #ffffff;
-  color: #7c3aed;
-  border: 1px solid #7c3aed;
-  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.25);
+  background-color: #EAE0D5;
+  color: #5E503F;
+  border: 1px solid #5E503F;
+  box-shadow: 0 4px 18px rgba(94, 80, 63, 0.3);
 }
 @property --tw-translate-x {
   syntax: "*";
