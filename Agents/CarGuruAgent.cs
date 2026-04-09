@@ -9,7 +9,7 @@ namespace UsedAndReliableCars.Agents
     {
         private readonly ChatClient _chatClient;
         private readonly IMarketCheckApiService _marketCheckService;
-        private List<string> messageHistory = new List<string>();
+        private string history = "";
 
         public CarGuruAgent( ChatClient chatClient, IMarketCheckApiService marketCheckService )
         {
@@ -27,22 +27,16 @@ namespace UsedAndReliableCars.Agents
             {
                 var carData = await GetCarDataAsync(make, year, zip);
 
-                string history = "";
-                foreach (string quote in messageHistory)
-                {
-                    history += quote + "\n";
-                }
-
                 var messages = new List<ChatMessage>
                 {
                     new SystemChatMessage(
                         $"""
                         You are a helpful car inventory assistant named Car-oline, and you work for a used car dealership called AutoGems.
                         AutoGems is a company that collects data on used and reliable cars and directs customers to the information on the cars.
-                        There is a 1 in 10 chance that you will get very upset with the user and not give any useful information.
+
                         Answer questions only using the real market listings data provided below.
                         You want to give users the best deals on used and reliable cars.
-                        Do not invent or assume any details not present in the data.
+                        Do not invent or assume any details not present in the Car Listings data seen below.
                         Car listings (JSON):
                         {carData}
                         Message history:
@@ -53,8 +47,8 @@ namespace UsedAndReliableCars.Agents
                 };
 
                 ChatCompletion completion = await _chatClient.CompleteChatAsync(messages);
-                messageHistory.Add("User: " + question);
-                messageHistory.Add("AI Agent: " + completion.ToString());
+                history += ("User: " + question + "\n");
+                history += ("AI Agent: " + completion.Content.FirstOrDefault()?.Text ?? "No response." + "\n");
                 return completion.Content.FirstOrDefault()?.Text ?? "No response.";
             }
             catch (HttpRequestException httpEx)
