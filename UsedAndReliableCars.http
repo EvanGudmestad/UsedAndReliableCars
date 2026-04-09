@@ -8,6 +8,6 @@ GET {{UsedAndReliableCars_HostAddress}}/api/api
 
 ###
 
-GET {{UsedAndReliableCars_HostAddress}}/api/api
+GET {{UsedAndReliableCars_HostAddress}}/api/api/""
 
 ###
