@@ -34,8 +34,8 @@
                 <form method="get" asp-action="FindCars" asp-controller="Home" class="mt-10 space-y-5">
                     @{
                         var grouped = Model.UsedCars
-                        .GroupBy(c => c.PriceCategory)
-                        .OrderBy(g => g.Key);
+                            .GroupBy(c => c.PriceCategory)
+                            .OrderBy(g => g.Key);
                     }
 
                     @foreach (var group in grouped)
@@ -47,17 +47,14 @@
                             <button type="button"
                                     class="flex w-full items-center justify-between bg-[#22333B]/10 px-4 py-3 transition hover:bg-[#22333B]/20"
                                     onclick="toggleAccordion('@id')">
-
                                 <span class="text-lg font-semibold text-[#22333B]">
                                     Under $@group.Key.ToString("N0")
                                 </span>
-
                                 <svg id="@(id)_icon"
                                      class="h-5 w-5 text-[#5E503F] transition-transform duration-300"
                                      fill="none" stroke="currentColor" stroke-width="2"
                                      viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M19 9l-7 7-7-7" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                                 </svg>
                             </button>
 
@@ -72,7 +69,6 @@
                                                    name="selectedCar"
                                                    value="@value"
                                                    class="h-4 w-4 border-[#C6AC8F] focus:ring-2 focus:ring-[#C6AC8F]" />
-
                                             <span class="text-sm font-medium text-[#22333B]">
                                                 @car.Make @car.Model (@car.Year)
                                             </span>
@@ -83,6 +79,7 @@
 
                         </div>
                     }
+
                     <button type="submit"
                             class="w-full rounded-lg bg-[var(--tan)] py-3 font-semibold text-[var(--jet)] transition hover:bg-[var(--brown)] hover:text-[var(--bone)] hover:shadow-md">
                         Find these cars
@@ -90,26 +87,24 @@
                 </form>
             </div>
 
-            <!-- RIGHT SIDE (Heading + Buttons) -->
+            <!-- RIGHT SIDE -->
             <div class="order-1 text-center lg:order-2 lg:text-left">
                 <h1 class="text-4xl leading-tight font-extrabold text-white drop-shadow-lg sm:text-5xl">
                     AutoGems.Ai
                 </h1>
-
                 <p class="mt-8 mb-12 text-lg text-gray-100 drop-shadow-md">
                     Find used and reliable cars near you!
                 </p>
-
                 <div class="flex flex-wrap justify-center gap-4 lg:justify-start">
                     <a href="#bottomSection"
-                       class="inline-block rounded bg-[var(--tan)] px-8 py-3 text-center text-lg
-                       font-semibold text-[var(--jet)] transition-transform hover:scale-105 hover:bg-[var(--brown)] hover:text-[var(--bone)] hover:shadow-[0_10px_20px_-10px_black]">
+                       class="inline-block rounded bg-[var(--tan)] px-8 py-3 text-center text-lg font-semibold
+                              text-[var(--jet)] transition-transform hover:scale-105 hover:bg-[var(--brown)]
+                              hover:text-[var(--bone)] hover:shadow-[0_10px_20px_-10px_black]">
                         Find My Next Car!
                     </a>
-
                     <a href="#"
                        class="rounded border border-[#EAE0D5] px-8 py-3 text-lg text-[#EAE0D5]
-                      transition-colors hover:bg-[#EAE0D5] hover:text-[#22333B]">
+                              transition-colors hover:bg-[#EAE0D5] hover:text-[#22333B]">
                         About our Service
                     </a>
                 </div>
@@ -139,12 +134,11 @@
         </div>
     </section>
 
+
     <!-- AI Section -->
     <section class="line-bg relative flex min-h-screen w-screen flex-col items-center justify-start px-8 py-24">
 
-        <!-- Top fade -->
         <div class="pointer-events-none absolute top-0 left-0 h-32 w-full bg-gradient-to-t from-transparent to-[#EAE0D5]"></div>
-        <!-- Bottom fade -->
         <div class="pointer-events-none absolute bottom-0 left-0 h-32 w-full bg-gradient-to-b from-transparent to-[#EAE0D5]"></div>
 
         <!-- Heading -->
@@ -154,8 +148,8 @@
 
             <button id="askAiButton"
                     class="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--tan)] px-6 py-3
-                           font-semibold text-[var(--jet)] shadow-lg transition hover:bg-[var(--brown)]
-                           hover:text-[var(--bone)] hover:shadow-xl">
+                           font-semibold text-[var(--jet)] shadow-lg transition
+                           hover:bg-[var(--brown)] hover:text-[var(--bone)] hover:shadow-xl">
                 <svg viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
                     <g fill="none">
                         <path d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z"></path>
@@ -178,7 +172,7 @@
                     <div class="flex items-center gap-3">
                         <div class="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--tan)]">
                             <svg viewBox="0 0 24 24" height="16" width="16" fill="currentColor" class="text-[#22333B]">
-                                <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216z"/>
+                                <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216z" />
                             </svg>
                         </div>
                         <div>
@@ -189,8 +183,9 @@
                     <button id="closeAiChat"
                             class="rounded-full p-1 text-[#C6AC8F] transition hover:bg-white/10 hover:text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                             fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
                         </svg>
                     </button>
                 </div>
@@ -198,14 +193,13 @@
                 <!-- Message List -->
                 <div id="messageList"
                      class="flex h-80 flex-col gap-4 overflow-y-auto bg-[#f5ede3] px-6 py-4 scroll-smooth">
-                    <!-- Welcome message -->
                     <div class="flex items-start gap-3">
                         <div class="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#22333B]">
                             <svg viewBox="0 0 24 24" height="14" width="14" fill="currentColor" class="text-[var(--tan)]">
-                                <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216z"/>
+                                <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216z" />
                             </svg>
                         </div>
-                        <div class="max-w-[80%] rounded-2xl rounded-tl-none bg-[#22333B] px-4 py-3 text-sm text-[#EAE0D5] shadow-sm">
+                        <div class="max-w-[80%] rounded-2xl rounded-tl-none bg-[#22333B] px-4 py-3 text-sm leading-relaxed text-[#EAE0D5] shadow-sm">
                             Hi! I'm your AutoGems AI assistant. Ask me anything about used cars — pricing, reliability, what's in stock, and more!
                         </div>
                     </div>
@@ -226,8 +220,8 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                              fill="none" stroke="currentColor" stroke-width="2.5"
                              stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" y1="2" x2="11" y2="13"/>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
                         </svg>
                     </button>
                 </div>
@@ -240,7 +234,7 @@
 </div>
 
 <script>
-    // --- Toggle chat open/close ---
+    // ── Open / Close ─────────────────────────────────────────────────────────────
     const askBtn   = document.getElementById("askAiButton");
     const closeBtn = document.getElementById("closeAiChat");
     const box      = document.getElementById("aiChatbox");
@@ -262,29 +256,63 @@
     askBtn.addEventListener("click", openChat);
     closeBtn.addEventListener("click", closeChat);
 
-    // --- Send message ---
-    const input    = document.getElementById("chatInput");
-    const sendBtn  = document.getElementById("sendBtn");
-    const msgList  = document.getElementById("messageList");
+    // ── Markdown parser ──────────────────────────────────────────────────────────
+    function parseMarkdown(text) {
+        return text
+            // Bold
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            // Italic (single * not preceded/followed by another *)
+            .replace(/(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)/g, '<em>$1</em>')
+            // Links [label](url)
+            .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,
+                '<a href="$2" target="_blank" rel="noopener noreferrer" ' +
+                'class="underline text-[#C6AC8F] hover:text-white transition-colors">$1</a>')
+            // Unordered list items: - item
+            .replace(/^- (.+)$/gm, '<li class="ml-4 list-disc">$1</li>')
+            // Numbered list items: 1. item
+            .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 list-decimal">$1</li>')
+            // Wrap runs of <li> in a <ul>
+            .replace(/(<li[^>]*>[\s\S]*?<\/li>\n?)+/g,
+                match => '<ul class="mt-2 mb-2 space-y-1">' + match + '</ul>')
+            // Line breaks
+            .replace(/\n/g, '<br />');
+    }
+
+    // ── Message rendering ────────────────────────────────────────────────────────
+    const msgList = document.getElementById("messageList");
 
     function appendMessage(text, role) {
         const isUser = role === "user";
+
         const wrapper = document.createElement("div");
-        wrapper.className = `flex items-start gap-3 ${isUser ? "flex-row-reverse" : ""}`;
+        wrapper.className = "flex items-start gap-3" + (isUser ? " flex-row-reverse" : "");
 
         const avatar = document.createElement("div");
-        avatar.className = `mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full ${isUser ? "bg-[var(--tan)]" : "bg-[#22333B]"}`;
+        avatar.className = "mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full " +
+            (isUser ? "bg-[var(--tan)]" : "bg-[#22333B]");
         avatar.innerHTML = isUser
-            ? `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#22333B]"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`
-            : `<svg viewBox="0 0 24 24" height="14" width="14" fill="currentColor" class="text-[var(--tan)]"><path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216z"/></svg>`;
+            ? `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round" class="text-[#22333B]">
+                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                   <circle cx="12" cy="7" r="4"/>
+               </svg>`
+            : `<svg viewBox="0 0 24 24" height="14" width="14" fill="currentColor" class="text-[var(--tan)]">
+                   <path d="M9.107 5.448c.598-1.75 3.016-1.803 3.725-.159l.06.16l.807 2.36a4 4 0 0 0 2.276 2.411l.217.081l2.36.806c1.75.598 1.803 3.016.16 3.725l-.16.06l-2.36.807a4 4 0 0 0-2.412 2.276l-.081.216l-.806 2.361c-.598 1.75-3.016 1.803-3.724.16l-.062-.16l-.806-2.36a4 4 0 0 0-2.276-2.412l-.216-.081l-2.36-.806c-1.751-.598-1.804-3.016-.16-3.724l.16-.062l2.36-.806A4 4 0 0 0 8.22 8.025l.081-.216z"/>
+               </svg>`;
 
         const bubble = document.createElement("div");
-        bubble.className = `max-w-[80%] rounded-2xl px-4 py-3 text-sm shadow-sm whitespace-pre-wrap ${
-            isUser
+        bubble.className = "max-w-[80%] rounded-2xl px-4 py-3 text-sm shadow-sm leading-relaxed " +
+            (isUser
                 ? "rounded-tr-none bg-[var(--tan)] text-[var(--jet)]"
-                : "rounded-tl-none bg-[#22333B] text-[#EAE0D5]"
-        }`;
-        bubble.textContent = text;
+                : "rounded-tl-none bg-[#22333B] text-[#EAE0D5]");
+
+        // User input stays plain text (XSS safe); AI responses get markdown rendered
+        if (isUser) {
+            bubble.textContent = text;
+        } else {
+            bubble.innerHTML = parseMarkdown(text);
+        }
 
         wrapper.appendChild(avatar);
         wrapper.appendChild(bubble);
@@ -292,6 +320,7 @@
         msgList.scrollTop = msgList.scrollHeight;
     }
 
+    // ── Typing indicator ─────────────────────────────────────────────────────────
     function appendTyping() {
         const wrapper = document.createElement("div");
         wrapper.id = "typingIndicator";
@@ -317,6 +346,10 @@
         document.getElementById("typingIndicator")?.remove();
     }
 
+    // ── Send message ─────────────────────────────────────────────────────────────
+    const input   = document.getElementById("chatInput");
+    const sendBtn = document.getElementById("sendBtn");
+
     async function sendMessage() {
         const question = input.value.trim();
         if (!question) return;
@@ -332,7 +365,6 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ question })
             });
-
             const data = await response.json();
             removeTyping();
             appendMessage(data.answer ?? "Sorry, I couldn't get a response.", "ai");
@@ -353,10 +385,10 @@
         }
     });
 
-    // --- Accordion ---
+    // ── Accordion ────────────────────────────────────────────────────────────────
     function toggleAccordion(id) {
         const content = document.getElementById(id);
-        const icon = document.getElementById(id + "_icon");
+        const icon    = document.getElementById(id + "_icon");
         if (content.style.maxHeight) {
             content.style.maxHeight = null;
             if (icon) icon.style.transform = "rotate(0deg)";
