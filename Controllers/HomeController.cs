@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.AI;
 using UsedAndReliableCars.Models;
 using UsedAndReliableCars.Services;
 
@@ -8,10 +9,12 @@ namespace UsedAndReliableCars.Controllers
     public class HomeController : Controller
     {
         private readonly IMarketCheckApiService _marketCheck;
+        private readonly CarAiAssistant _carAi;
 
-        public HomeController( IMarketCheckApiService marketCheck )
+        public HomeController( IMarketCheckApiService marketCheck, CarAiAssistant carAi )
         {
             _marketCheck = marketCheck;
+            _carAi = carAi;
         }
 
         public List<UsedCar> usedCars = new List<UsedCar>
@@ -114,6 +117,48 @@ namespace UsedAndReliableCars.Controllers
         {
 
             return View();
+        }
+
+        [HttpPost]
+        [IgnoreAntiforgeryToken]
+        public async Task<IActionResult> Chat( [FromBody] ChatRequestDto? body, CancellationToken cancellationToken )
+        {
+            if (!_carAi.IsAvailable)
+                return StatusCode(503, new ChatResponseDto { Error = "AI chat is not configured. Add OpenAI:ApiKey (user secrets or environment)." });
+
+            if (body?.Messages is null || body.Messages.Count == 0)
+                return BadRequest(new ChatResponseDto { Error = "Send at least one message." });
+
+            const int maxTurns = 40;
+            const int maxChars = 8000;
+            if (body.Messages.Count > maxTurns)
+                return BadRequest(new ChatResponseDto { Error = $"At most {maxTurns} messages per request." });
+
+            var chatMessages = new List<ChatMessage>(body.Messages.Count);
+            foreach (var turn in body.Messages)
+            {
+                if (string.IsNullOrWhiteSpace(turn.Text) || turn.Text.Length > maxChars)
+                    return BadRequest(new ChatResponseDto { Error = "Each message must be non-empty and within length limits." });
+
+                var role = turn.Role?.Trim().ToLowerInvariant();
+                ChatMessage msg = role switch
+                {
+                    "assistant" => new ChatMessage(ChatRole.Assistant, turn.Text.Trim()),
+                    "system" => new ChatMessage(ChatRole.System, turn.Text.Trim()),
+                    _ => new ChatMessage(ChatRole.User, turn.Text.Trim())
+                };
+                chatMessages.Add(msg);
+            }
+
+            try
+            {
+                var response = await _carAi.RunAsync(chatMessages, cancellationToken);
+                return Ok(new ChatResponseDto { Reply = response.Text });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(502, new ChatResponseDto { Error = "The assistant could not complete the request. " + ex.Message });
+            }
         }
 
         [HttpGet]

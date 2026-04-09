@@ -4,7 +4,13 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>789d035c-0144-4ebf-ac60-a6ac1205ffaa</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Agents.AI" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="10.4.0" />
+  </ItemGroup>
 
 	<Target Name="Tailwind" BeforeTargets="Build;PrepareForPublish">
 		<Exec Command="npm install" />

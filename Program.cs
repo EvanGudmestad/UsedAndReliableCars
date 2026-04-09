@@ -8,6 +8,8 @@ builder.Services.AddControllersWithViews();
 // Register MarketCheckApiService as a typed HttpClient
 builder.Services.AddHttpClient<IMarketCheckApiService, MarketCheckApiService>();
 
+builder.Services.AddSingleton<CarAiAssistant>();
+
 var app = builder.Build();
 
 app.UseStaticFiles();   // Serve files from wwwroot

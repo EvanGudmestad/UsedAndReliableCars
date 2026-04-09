@@ -159,7 +159,7 @@
         <div class="max-w-8xl mx-auto gap-10 text-center transition">
             <div>
                 <h3 class="mb-2 text-2xl font-bold text-white">AI Integration</h3>
-                <p class="text-gray-200">Ask our ai for help finding the car that fits your exact needs (Coming Soon)</p>
+                <p class="text-gray-200">Ask our AI for help finding a car that fits your budget and reliability needs.</p>
 
                 <div id="askAiButton"
                      class="outer-cont flex transform cursor-pointer items-center gap-2 duration-500">
@@ -206,6 +206,11 @@
 <script>
     const btn = document.getElementById("askAiButton");
     const box = document.getElementById("aiChatbox");
+    const chatUrl = "@Url.Action("Chat", "Home")";
+    const messageList = box.querySelector(".message-list");
+    const messageInput = box.querySelector(".message-input");
+    const sendButton = box.querySelector(".send-button");
+    const transcript = [];
 
     btn.addEventListener("click", () => {
         box.classList.remove("hidden");
@@ -213,6 +218,62 @@
             box.classList.remove("opacity-0", "translate-y-4");
             box.classList.add("opacity-100", "translate-y-0");
         });
+    });
+
+    function appendChatLine(role, text, isError) {
+        const li = document.createElement("li");
+        li.className = isError ? "message-error" : (role === "user" ? "message-user" : "message-assistant");
+        const span = document.createElement("span");
+        span.textContent = text;
+        li.appendChild(span);
+        messageList.appendChild(li);
+        const win = box.querySelector(".chat-window");
+        win.scrollTop = win.scrollHeight;
+    }
+
+    async function sendChatMessage() {
+        const text = (messageInput.value || "").trim();
+        if (!text) return;
+
+        messageInput.value = "";
+        transcript.push({ role: "user", text });
+        appendChatLine("user", text, false);
+
+        sendButton.disabled = true;
+        messageInput.disabled = true;
+
+        try {
+            const res = await fetch(chatUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                body: JSON.stringify({ messages: transcript })
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) {
+                const err = data.error || res.statusText || "Request failed";
+                appendChatLine("assistant", err, true);
+                transcript.pop();
+                return;
+            }
+            const reply = data.reply || "";
+            transcript.push({ role: "assistant", text: reply });
+            appendChatLine("assistant", reply, false);
+        } catch (e) {
+            appendChatLine("assistant", "Could not reach the assistant. Check your connection and try again.", true);
+            transcript.pop();
+        } finally {
+            sendButton.disabled = false;
+            messageInput.disabled = false;
+            messageInput.focus();
+        }
+    }
+
+    sendButton.addEventListener("click", sendChatMessage);
+    messageInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            sendChatMessage();
+        }
     });
 
     function toggleAccordion(id) {
