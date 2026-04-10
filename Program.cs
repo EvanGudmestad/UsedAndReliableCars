@@ -6,6 +6,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<CarGuruAgent>();
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 // Typed HttpClient for MarketCheck — matches constructor signature
 builder.Services.AddHttpClient<IMarketCheckApiService, MarketCheckApiService>();
 
@@ -19,6 +30,8 @@ builder.Services.AddSingleton(new ChatClient(model: "gpt-4o", apiKey: openAiApiK
 builder.Services.AddScoped<CarGuruAgent>();
 
 var app = builder.Build();
+
+app.UseSession();
 
 app.UseStaticFiles();
 app.UseRouting();

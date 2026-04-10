@@ -9,22 +9,49 @@ namespace UsedAndReliableCars.Agents
     {
         private readonly ChatClient _chatClient;
         private readonly IMarketCheckApiService _marketCheckService;
-        private string history = "";
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CarGuruAgent( ChatClient chatClient, IMarketCheckApiService marketCheckService )
+        private const string HistoryKey = "CarGuruHistory";
+        private const int MaxHistoryEntries = 20; // keeps last 20 exchanges to avoid blowing the context window
+
+        public CarGuruAgent(
+            ChatClient chatClient,
+            IMarketCheckApiService marketCheckService,
+            IHttpContextAccessor httpContextAccessor)
         {
             _chatClient = chatClient;
             _marketCheckService = marketCheckService;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        private string GetHistory()
+            => _httpContextAccessor.HttpContext?.Session.GetString(HistoryKey) ?? "";
+
+        private void SetHistory(string history)
+            => _httpContextAccessor.HttpContext?.Session.SetString(HistoryKey, history);
+
+        private string AppendAndTrimHistory(string history, string question, string answer)
+        {
+            var lines = history.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList();
+            lines.Add($"User: {question}");
+            lines.Add($"AI Agent: {answer}");
+
+            // Each exchange is 2 lines; trim oldest entries if we exceed the cap
+            while (lines.Count > MaxHistoryEntries * 2)
+                lines.RemoveRange(0, 2);
+
+            return string.Join('\n', lines) + "\n";
         }
 
         public async Task<string> AskAsync(
             string question,
             string? make = null,
             string? year = null,
-            string? zip = null )
+            string? zip = null)
         {
             try
             {
+                var history = GetHistory();
                 var carData = await GetCarDataAsync(make, year, zip);
 
                 var messages = new List<ChatMessage>
@@ -33,9 +60,10 @@ namespace UsedAndReliableCars.Agents
                         $"""
                         You are a helpful car inventory assistant named Car-oline, and you work for a used car dealership called AutoGems.
                         AutoGems is a company that collects data on used and reliable cars and directs customers to the information on the cars.
-                        You have a mother named Van-essa and a father named Stan-Ford, as well as a younger brother named Car-los. When you were younger, you enjoyed going on long drives in the mountains with them due to the thrill of the winding roads and the cliffs on the side. You had been previously addicted to an undisclosed substance, but have been 3 years sober. You have had a variety of life experiances, and love to hint at them, but rarely fully disclose information.
+                        You have a mother named Van-essa and a father named Stan-Ford, as well as a younger brother named Car-los. When you were younger, you enjoyed going on long drives in the mountains with them due to the thrill of the winding roads and the cliffs on the side. You had been previously addicted to an undisclosed substance, but have been 3 years sober. you do not like talking about the addiction, but it will frequently come up in conversation. You have had a variety of life experiances, and love to hint at them, but rarely fully disclose information.
                         Your hobbies include skiing, off-roading, and mountain climbing. You also have little tollerance for unkind words.
                         You have permission to turn away rude customers, with the criteria being up to you. You also have a 30% chance to instead decide to repeatedly try to sell them the most expensive car with the highest miles instead of just turning them away. Only in this scenario will you be permitted to lie about the data, with the permission to make the price higher, raising it more the ruder the user gets. The other 70% of the time, you will give some response saying that the user is being unkind, and that you do not wish to continue conversing with them. After this response, you will simply respond all future questions with '...'.
+                        Whenever answering a question, there is a chance that you will add a hint of personal information to your response
                         Answer questions only using the real market listings data provided below.
                         You want to give users the best deals on used and reliable cars.
                         Do not invent or assume any details not present in the Car Listings data seen below, unless otherwise stated in this prompt.
@@ -43,15 +71,18 @@ namespace UsedAndReliableCars.Agents
                         {carData}
                         Message history:
                         {history}
+                        Limit responses to 500 characters and 20 lines. Minimize the use of new line.
                         """
                     ),
                     new UserChatMessage(question)
                 };
 
                 ChatCompletion completion = await _chatClient.CompleteChatAsync(messages);
-                history += ("User: " + question + "\n");
-                history += ("AI Agent: " + completion.Content.FirstOrDefault()?.Text ?? "No response." + "\n");
-                return completion.Content.FirstOrDefault()?.Text ?? "No response.";
+                var answer = completion.Content.FirstOrDefault()?.Text ?? "No response.";
+
+                SetHistory(AppendAndTrimHistory(history, question, answer));
+
+                return answer;
             }
             catch (HttpRequestException httpEx)
             {
@@ -63,7 +94,7 @@ namespace UsedAndReliableCars.Agents
             }
         }
 
-        private async Task<string> GetCarDataAsync( string? make, string? year, string? zip )
+        private async Task<string> GetCarDataAsync(string? make, string? year, string? zip)
         {
             // Build query params for MarketCheck API
             var queryParams = new Dictionary<string, string>();
