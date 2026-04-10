@@ -1,0 +1,20 @@
+/*
+  ai-panel.css — minimal residual styles that cannot be expressed
+  with standard Tailwind utility classes alone.
+  Everything else lives as Tailwind classes in _AiPanel.cshtml.
+*/
+
+/* Compound transform: slide tab off-screen when panel is open */
+#ai-panel-tab.is-open {
+    transform: translateY(-50%) translateX(110%);
+}
+
+/* Required for overflow-y scroll to work inside a flex child */
+#ai-panel-messages {
+    min-height: 0;
+}
+
+/* Thin custom scrollbar */
+#ai-panel-messages::-webkit-scrollbar       { width: 4px; }
+#ai-panel-messages::-webkit-scrollbar-track { background: transparent; }
+#ai-panel-messages::-webkit-scrollbar-thumb { background: #C6AC8F50; border-radius: 4px; }

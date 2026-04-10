@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+    @* ── ADDED: AI panel shell styles ── *@
+    <link rel="stylesheet" href="~/css/ai-panel.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Fugaz+One&family=Luckiest+Guy&display=swap" rel="stylesheet">
@@ -112,13 +114,19 @@
         }
         closeMobileMenuOnResizeWindow();
     </script>
+
     <main class="flex-grow">
         @RenderBody()
     </main>
+
     <footer class="mt-12 bg-[#0A0908] py-6 text-[#C6AC8F]">
         <div class="mx-auto max-w-6xl text-center">
             <p>&copy; @DateTime.Now.Year AutoGems.ai. All rights reserved.</p>
         </div>
     </footer>
+
+    @* ── ADDED: AI panel (rendered once, available on every page) ── *@
+    @await Html.PartialAsync("_AiPanel")
+    <script src="~/js/ai-panel.js" asp-append-version="true"></script>
 </body>
 </html>
