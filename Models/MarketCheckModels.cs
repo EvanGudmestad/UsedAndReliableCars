@@ -153,11 +153,14 @@ namespace UsedAndReliableCars.Models
         /// <summary>Total number of pages (0 if no results).</summary>
         public int TotalPages => PageSize <= 0 ? 0 : (int)Math.Ceiling((double)TotalFound / PageSize);
 
-        /// <summary>Search params for building pagination links (e.g. selectedCar, year, make, zip).</summary>
+        /// <summary>Search params for building pagination links (e.g. selectedCar, year, make, location).</summary>
         public string? SelectedCar { get; set; }
         public string? Year { get; set; }
         public string? Make { get; set; }
         public string? Zip { get; set; }
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public bool Nationwide { get; set; }
     }
 
     public class PriceHistoryViewModel

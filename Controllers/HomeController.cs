@@ -153,7 +153,16 @@ namespace UsedAndReliableCars.Controllers
             try
             {
                 var response = await _carAi.RunAsync(chatMessages, cancellationToken);
-                return Ok(new ChatResponseDto { Reply = response.Text });
+
+                IReadOnlyList<ChatCarListingDto>? listings = null;
+                if (HttpContext.Items.TryGetValue(ChatInventoryHttpItems.ListingsJsonKey, out var invObj) && invObj is string invJson)
+                {
+                    var parsed = InventoryToolResultParser.ParseListingCards(invJson);
+                    listings = ChatListingRanker.RankForSidebar(response.Text, parsed);
+                    HttpContext.Items.Remove(ChatInventoryHttpItems.ListingsJsonKey);
+                }
+
+                return Ok(new ChatResponseDto { Reply = response.Text, Listings = listings });
             }
             catch (Exception ex)
             {
@@ -162,7 +171,16 @@ namespace UsedAndReliableCars.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> FindCars( string? selectedCar, string? year, string? make, string? zip, int page = 1, CancellationToken cancellationToken = default )
+        public async Task<IActionResult> FindCars(
+            string? selectedCar,
+            string? year,
+            string? make,
+            string? zip,
+            string? city,
+            string? state,
+            bool nationwide = false,
+            int page = 1,
+            CancellationToken cancellationToken = default )
         {
             var viewModel = new CarSearchResultViewModel();
             var queryParams = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -175,6 +193,9 @@ namespace UsedAndReliableCars.Controllers
             viewModel.Year = year;
             viewModel.Make = make;
             viewModel.Zip = zip;
+            viewModel.City = city;
+            viewModel.State = state;
+            viewModel.Nationwide = nationwide;
 
             int? maxPriceCategory = null;
             if (!string.IsNullOrEmpty(selectedCar))
@@ -211,7 +232,7 @@ namespace UsedAndReliableCars.Controllers
             }
             if (!string.IsNullOrEmpty(year)) queryParams["year"] = year;
             if (!string.IsNullOrEmpty(make)) queryParams["make"] = make;
-            if (!string.IsNullOrEmpty(zip)) queryParams["zip"] = zip;
+            CarInventorySearchHelper.ApplyMarketCheckLocation(queryParams, zip, city, state, nationwide);
 
             queryParams["rows"] = pageSize.ToString();
             queryParams["start"] = ((page - 1) * pageSize).ToString();

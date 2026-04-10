@@ -462,3 +462,77 @@
         box-shadow: 0 4px 18px rgba(94, 80, 63, 0.3);
     }
 
+/* AI chat + listing cards layout */
+.ai-chat-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+    .ai-chat-shell {
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .ai-listing-panel:not(.hidden) {
+        width: min(100%, 300px);
+    }
+}
+
+.ai-chat-shell .card.ai-chat-card {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+}
+
+.ai-listing-cards {
+    scrollbar-gutter: stable;
+}
+
+.ai-listing-card {
+    display: block;
+    border-radius: 10px;
+    border: 1px solid #C6AC8F;
+    background: #f5ede3;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #22333B;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ai-listing-card:hover {
+    background: #fff;
+    border-color: #5E503F;
+    box-shadow: 0 4px 12px rgba(10, 9, 8, 0.12);
+}
+
+.ai-listing-pick-badge {
+    display: inline-block;
+    margin-bottom: 6px;
+    border-radius: 9999px;
+    background: #22333B;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #EAE0D5;
+}
+
+.ai-listing-card-title {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.35;
+    margin-bottom: 4px;
+}
+
+.ai-listing-card-meta {
+    font-size: 12px;
+    color: #5E503F;
+    line-height: 1.35;
+}
+

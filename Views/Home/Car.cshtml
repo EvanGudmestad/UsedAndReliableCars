@@ -50,7 +50,7 @@
             <div class="mt-6 rounded-2xl border border-[#C6AC8F] bg-[#f5ede3] px-10 py-16 text-center shadow-md">
                 <div class="mb-3 text-4xl">🔍</div>
                 <p class="text-xl font-bold text-[#22333B]">No listings found</p>
-                <p class="mt-2 text-[#5E503F]">Try a different car or a broader zip code.</p>
+                <p class="mt-2 text-[#5E503F]">Try a different car, a broader area, or search nationwide.</p>
                 <a asp-controller="Home" asp-action="Index"
                    class="mt-6 inline-block rounded-lg bg-[var(--tan)] px-8 py-3 font-semibold
                           text-[var(--jet)] shadow-md transition hover:bg-[var(--brown)] hover:text-[var(--bone)] hover:shadow-lg">
@@ -167,7 +167,8 @@
                     @if (Model.CurrentPage > 1)
                     {
                         <a asp-controller="Home" asp-action="FindCars"
-                           asp-route-selectedCar="@Model.SelectedCar" asp-route-year="@Model.Year" asp-route-make="@Model.Make" asp-route-zip="@Model.Zip"
+                           asp-route-selectedCar="@Model.SelectedCar" asp-route-year="@Model.Year" asp-route-make="@Model.Make"
+                           asp-route-zip="@Model.Zip" asp-route-city="@Model.City" asp-route-state="@Model.State" asp-route-nationwide="@Model.Nationwide"
                            asp-route-page="@(Model.CurrentPage - 1)"
                            class="rounded-lg border border-[#C6AC8F] bg-[#EAE0D5] px-4 py-2 text-sm font-semibold text-[#5E503F] shadow-sm transition hover:bg-[#C6AC8F]/30">
                             ← Previous
@@ -177,7 +178,8 @@
                     {
                         var isCurrent = p == Model.CurrentPage;
                         <a asp-controller="Home" asp-action="FindCars"
-                           asp-route-selectedCar="@Model.SelectedCar" asp-route-year="@Model.Year" asp-route-make="@Model.Make" asp-route-zip="@Model.Zip"
+                           asp-route-selectedCar="@Model.SelectedCar" asp-route-year="@Model.Year" asp-route-make="@Model.Make"
+                           asp-route-zip="@Model.Zip" asp-route-city="@Model.City" asp-route-state="@Model.State" asp-route-nationwide="@Model.Nationwide"
                            asp-route-page="@p"
                            class="@(isCurrent ? "bg-[var(--tan)] text-[var(--jet)]" : "border border-[#C6AC8F] bg-[#EAE0D5] text-[#5E503F] hover:bg-[#C6AC8F]/30") rounded-lg px-4 py-2 text-sm font-semibold shadow-sm transition">
                             @p
@@ -186,7 +188,8 @@
                     @if (Model.CurrentPage < Model.TotalPages)
                     {
                         <a asp-controller="Home" asp-action="FindCars"
-                           asp-route-selectedCar="@Model.SelectedCar" asp-route-year="@Model.Year" asp-route-make="@Model.Make" asp-route-zip="@Model.Zip"
+                           asp-route-selectedCar="@Model.SelectedCar" asp-route-year="@Model.Year" asp-route-make="@Model.Make"
+                           asp-route-zip="@Model.Zip" asp-route-city="@Model.City" asp-route-state="@Model.State" asp-route-nationwide="@Model.Nationwide"
                            asp-route-page="@(Model.CurrentPage + 1)"
                            class="rounded-lg border border-[#C6AC8F] bg-[#EAE0D5] px-4 py-2 text-sm font-semibold text-[#5E503F] shadow-sm transition hover:bg-[#C6AC8F]/30">
                             Next →

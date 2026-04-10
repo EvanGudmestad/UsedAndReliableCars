@@ -9,12 +9,45 @@ namespace UsedAndReliableCars.Services;
 /// </summary>
 public static class CarInventorySearchHelper
 {
+    /// <summary>
+    /// MarketCheck <c>/v2/search/car/active</c> location filters.
+    /// Precedence: <paramref name="searchNationwide"/> → <paramref name="zip"/> → city+<paramref name="state"/> → none (US-wide, no geo filter).
+    /// </summary>
+    public static void ApplyMarketCheckLocation(
+        IDictionary<string, string> queryParams,
+        string? zip,
+        string? city,
+        string? state,
+        bool searchNationwide )
+    {
+        if (searchNationwide)
+            return;
+
+        var z = zip?.Trim();
+        if (!string.IsNullOrWhiteSpace(z))
+        {
+            queryParams["zip"] = z!;
+            return;
+        }
+
+        var c = city?.Trim();
+        var s = UsStates.ResolveCode(state);
+        if (!string.IsNullOrWhiteSpace(c) && !string.IsNullOrWhiteSpace(s))
+        {
+            queryParams["city"] = c!;
+            queryParams["state"] = s!;
+        }
+    }
+
     public static async Task<string> SearchActiveListingsJsonAsync(
         IMarketCheckApiService marketCheck,
         string make,
         string model,
         string? year,
         string? zip,
+        string? city,
+        string? state,
+        bool searchNationwide,
         int? maxPrice,
         int page,
         CancellationToken cancellationToken )
@@ -50,8 +83,7 @@ public static class CarInventorySearchHelper
                     queryParams["year"] = yearStr;
             }
 
-            if (!string.IsNullOrWhiteSpace(zip))
-                queryParams["zip"] = zip.Trim();
+            ApplyMarketCheckLocation(queryParams, zip, city, state, searchNationwide);
 
             if (maxPrice is > 0)
                 queryParams["price_range"] = $"0-{maxPrice.Value}";

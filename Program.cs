@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 // Register MarketCheckApiService as a typed HttpClient
 builder.Services.AddHttpClient<IMarketCheckApiService, MarketCheckApiService>();
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<CarAiAssistant>();
 
 var app = builder.Build();

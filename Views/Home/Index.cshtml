@@ -85,6 +85,45 @@
 
                         </div>
                     }
+
+                    <div class="space-y-4 rounded-lg border border-[#C6AC8F] bg-[#f5ede3]/60 p-4">
+                        <p class="text-sm font-semibold text-[#22333B]">Where should we look?</p>
+                        <label class="flex cursor-pointer items-start gap-3 text-sm text-[#22333B]">
+                            <input type="checkbox" name="nationwide" value="true"
+                                   class="mt-1 h-4 w-4 shrink-0 rounded border-[#C6AC8F] text-[#5E503F] focus:ring-[#C6AC8F]" />
+                            <span>Search the <span class="font-semibold">entire United States</span> (ignores city, state, and ZIP)</span>
+                        </label>
+                        <div class="grid gap-3 sm:grid-cols-2">
+                            <div>
+                                <label for="searchCity" class="mb-1 block text-xs font-medium text-[#5E503F]">City</label>
+                                <input id="searchCity" type="text" name="city" maxlength="80"
+                                       class="w-full rounded-lg border border-[#C6AC8F] bg-[#EAE0D5] px-3 py-2 text-sm text-[#22333B] placeholder:text-[#5E503F]/60 focus:border-[#5E503F] focus:outline-none"
+                                       placeholder="e.g. Austin" autocomplete="address-level2" />
+                            </div>
+                            <div>
+                                <label for="searchState" class="mb-1 block text-xs font-medium text-[#5E503F]">State</label>
+                                <select id="searchState" name="state"
+                                        class="w-full rounded-lg border border-[#C6AC8F] bg-[#EAE0D5] px-3 py-2 text-sm text-[#22333B] focus:border-[#5E503F] focus:outline-none">
+                                    <option value="">— Select —</option>
+                                    @foreach (var st in UsedAndReliableCars.Models.UsStates.All)
+                                    {
+                                        <option value="@st.Code">@st.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="searchZip" class="mb-1 block text-xs font-medium text-[#5E503F]">ZIP code (optional)</label>
+                            <input id="searchZip" type="text" name="zip" inputmode="numeric" maxlength="10"
+                                   class="w-full max-w-xs rounded-lg border border-[#C6AC8F] bg-[#EAE0D5] px-3 py-2 text-sm text-[#22333B] placeholder:text-[#5E503F]/60 focus:border-[#5E503F] focus:outline-none"
+                                   placeholder="If set, used instead of city/state" autocomplete="postal-code" />
+                        </div>
+                        <p class="text-xs leading-relaxed text-[#5E503F]">
+                            Leave city/state empty and leave &quot;entire US&quot; unchecked to search nationwide with no location filter.
+                            If you enter a ZIP, it takes priority over city and state.
+                        </p>
+                    </div>
+
                     <button type="submit"
                             class="w-full rounded-lg bg-[var(--tan)] py-3 font-semibold text-[var(--jet)] transition hover:bg-[var(--brown)] hover:text-[var(--bone)] hover:shadow-md">
                         Find these cars
@@ -178,15 +217,24 @@
         </div>
 
         <div id="aiChatbox"
-             class="mx-auto mt-10 hidden w-[60%] translate-y-4 opacity-0 transition-all duration-500">
-            <div class="card">
-                <div class="chat-header">Chat</div>
-                <div class="chat-window">
-                    <ul class="message-list"></ul>
-                </div>
-                <div class="chat-input">
-                    <input type="text" class="message-input" placeholder="Type your message here">
-                    <button class="send-button">Send</button>
+             class="ai-chatbox-outer mx-auto mt-10 hidden w-full max-w-6xl translate-y-4 px-2 opacity-0 transition-all duration-500 sm:px-4">
+            <div class="ai-chat-shell">
+                <aside id="aiRecommendations"
+                       class="ai-listing-panel hidden max-h-[min(70vh,520px)] flex-col overflow-hidden rounded-xl border border-[#C6AC8F] bg-[#EAE0D5] shadow-lg">
+                    <div class="ai-listing-panel-header border-b border-[#C6AC8F] bg-[#22333B] px-4 py-3 text-left text-sm font-semibold text-[#EAE0D5]">
+                        Recommended listings
+                    </div>
+                    <div id="aiListingCards" class="ai-listing-cards flex flex-1 flex-col gap-2 overflow-y-auto p-3"></div>
+                </aside>
+                <div class="card ai-chat-card">
+                    <div class="chat-header">Chat</div>
+                    <div class="chat-window">
+                        <ul class="message-list"></ul>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" class="message-input" placeholder="Type your message here">
+                        <button class="send-button">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -213,12 +261,56 @@
     const transcript = [];
 
     btn.addEventListener("click", () => {
+        btn.classList.add("hidden");
         box.classList.remove("hidden");
         requestAnimationFrame(() => {
             box.classList.remove("opacity-0", "translate-y-4");
             box.classList.add("opacity-100", "translate-y-0");
         });
     });
+
+    function renderListingCards(listings) {
+        const panel = document.getElementById("aiRecommendations");
+        const listEl = document.getElementById("aiListingCards");
+        if (!panel || !listEl) return;
+        listEl.innerHTML = "";
+        if (!listings || listings.length === 0) {
+            panel.classList.add("hidden");
+            panel.classList.remove("flex");
+            return;
+        }
+        panel.classList.remove("hidden");
+        panel.classList.add("flex");
+        for (const car of listings) {
+            const url = car.vdpUrl;
+            if (!url) continue;
+            const a = document.createElement("a");
+            a.href = url;
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.className = "ai-listing-card";
+            if (car.pickRank != null && car.pickRank <= 8) {
+                const badge = document.createElement("div");
+                badge.className = "ai-listing-pick-badge";
+                badge.textContent = "#" + car.pickRank + (car.pickRank <= 3 ? " pick" : "");
+                a.appendChild(badge);
+            }
+            const title = document.createElement("div");
+            title.className = "ai-listing-card-title";
+            title.textContent = car.heading || "Vehicle";
+            a.appendChild(title);
+            const meta = document.createElement("div");
+            meta.className = "ai-listing-card-meta";
+            const parts = [];
+            if (car.price != null) parts.push("$" + Number(car.price).toLocaleString());
+            if (car.miles != null) parts.push(Number(car.miles).toLocaleString() + " mi");
+            const loc = [car.city, car.state].filter(Boolean).join(", ");
+            if (loc) parts.push(loc);
+            meta.textContent = parts.join(" · ");
+            a.appendChild(meta);
+            listEl.appendChild(a);
+        }
+    }
 
     function appendChatLine(role, text, isError) {
         const li = document.createElement("li");
@@ -258,6 +350,7 @@
             const reply = data.reply || "";
             transcript.push({ role: "assistant", text: reply });
             appendChatLine("assistant", reply, false);
+            renderListingCards(data.listings || []);
         } catch (e) {
             appendChatLine("assistant", "Could not reach the assistant. Check your connection and try again.", true);
             transcript.pop();
